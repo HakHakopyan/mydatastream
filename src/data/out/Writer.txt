@@ -1,0 +1,15 @@
+ActionStream_2
+person
+name Остап Бендер TEXT
+email ostap@12.com TEXT
+phone 999-987-6543 TEXT
+ActionStream_2
+person
+name Мадам Грицацуева TEXT
+email madam@12.com TEXT
+phone 999-985-4321 TEXT
+ActionStream_1
+person
+name Киса Воробьянинов TEXT
+email kisa@12.com TEXT
+phone 999-986-5432 TEXT

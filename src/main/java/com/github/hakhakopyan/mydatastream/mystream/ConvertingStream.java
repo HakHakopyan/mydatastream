@@ -1,7 +1,8 @@
 package com.github.hakhakopyan.mydatastream.mystream;
 
-import main.java.read_file.FileReaderGivable;
-import main.java.read_file.FileReaderGiver;
+
+import com.github.hakhakopyan.mydatastream.readfile.FileReaderGivable;
+import com.github.hakhakopyan.mydatastream.readfile.FileReaderGiver;
 
 public class ConvertingStream {
     public static ActionsStream of(String... pathes) {

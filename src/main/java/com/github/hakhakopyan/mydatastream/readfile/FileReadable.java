@@ -1,6 +1,7 @@
 package com.github.hakhakopyan.mydatastream.readfile;
 
-import main.java.record.Recordable;
+
+import com.github.hakhakopyan.mydatastream.record.Recordable;
 
 public interface FileReadable {
     public Recordable getRecord();

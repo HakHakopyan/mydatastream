@@ -1,6 +1,8 @@
 package com.github.hakhakopyan.mydatastream.readfile;
 
-import main.java.record.*;
+import com.github.hakhakopyan.mydatastream.record.Record;
+import com.github.hakhakopyan.mydatastream.record.Recordable;
+import com.github.hakhakopyan.mydatastream.record.SimpleRecord;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

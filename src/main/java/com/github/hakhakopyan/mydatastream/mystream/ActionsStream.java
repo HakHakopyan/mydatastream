@@ -1,9 +1,11 @@
 package com.github.hakhakopyan.mydatastream.mystream;
 
-import main.java.read_file.FileReaderGivable;
-import main.java.record.Recordable;
-import main.java.write_to_file.FileType;
-import main.java.write_to_file.FileWritable;
+import com.github.hakhakopyan.mydatastream.Actions.Actionable;
+import com.github.hakhakopyan.mydatastream.Actions.Filter;
+import com.github.hakhakopyan.mydatastream.readfile.FileReaderGivable;
+import com.github.hakhakopyan.mydatastream.record.Recordable;
+import com.github.hakhakopyan.mydatastream.write_to_file.FileType;
+import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package com.github.hakhakopyan.mydatastream.readfile;
 
-import main.java.record.EmptyRecord;
-import main.java.record.Recordable;
+import com.github.hakhakopyan.mydatastream.record.EmptyRecord;
+import com.github.hakhakopyan.mydatastream.record.Recordable;
 
 public class EmptyReader implements FileReadable {
     @Override

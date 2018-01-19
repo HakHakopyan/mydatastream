@@ -1,7 +1,8 @@
-package com.github.hakhakopyan.mydatastream.mystream;
+package com.github.hakhakopyan.mydatastream.Actions;
 
-import main.java.record.EmptyRecord;
-import main.java.record.Recordable;
+import com.github.hakhakopyan.mydatastream.record.EmptyRecord;
+import com.github.hakhakopyan.mydatastream.record.Recordable;
+
 
 import java.util.function.Predicate;
 

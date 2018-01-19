@@ -1,7 +1,8 @@
-package main.java.mystream;
+package com.github.hakhakopyan.mydatastream.mystream;
 
-import main.java.read_file.FileReaderGivable;
-import main.java.write_to_file.FileWritable;
+import com.github.hakhakopyan.mydatastream.Actions.Actionable;
+import com.github.hakhakopyan.mydatastream.readfile.FileReaderGivable;
+import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
 
 import java.util.List;
 
