@@ -2,7 +2,7 @@ CREATE TABLE object_types (
 object_type_id NUMBER(4) not null,
 param_name VARCHAR2 not null);
 
-INSERT INTO object_types VALUES (1, 'person');
+INSERT INTO object_types VALUES (1, 'Book');
 
-INSERT INTO object_types VALUES (2, 'Book');
+INSERT INTO object_types VALUES (2, 'person');
 

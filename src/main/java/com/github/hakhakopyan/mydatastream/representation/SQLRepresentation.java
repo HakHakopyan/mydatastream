@@ -1,4 +1,4 @@
-package representation;
+package com.github.hakhakopyan.mydatastream.representation;
 
 import com.github.hakhakopyan.mydatastream.record.ItemType;
 import com.github.hakhakopyan.mydatastream.record.SimpleRecordContainer;

@@ -4,7 +4,7 @@ package com.github.hakhakopyan.mydatastream.write_to_file.tosql;
 import com.github.hakhakopyan.mydatastream.record.Recordable;
 import com.github.hakhakopyan.mydatastream.record.SimpleRecordContainer;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
-import representation.SQLRepresentation;
+import com.github.hakhakopyan.mydatastream.representation.SQLRepresentation;
 
 import java.io.BufferedWriter;
 import java.io.File;
