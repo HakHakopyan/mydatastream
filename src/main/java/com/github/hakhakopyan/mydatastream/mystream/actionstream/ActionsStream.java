@@ -1,7 +1,8 @@
-package com.github.hakhakopyan.mydatastream.mystream;
+package com.github.hakhakopyan.mydatastream.mystream.actionstream;
 
 import com.github.hakhakopyan.mydatastream.Actions.Actionable;
 import com.github.hakhakopyan.mydatastream.Actions.Filter;
+import com.github.hakhakopyan.mydatastream.mystream.actionthread.ActionBaseThread;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGivable;
 import com.github.hakhakopyan.mydatastream.record.Recordable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileType;

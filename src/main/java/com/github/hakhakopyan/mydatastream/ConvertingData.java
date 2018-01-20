@@ -1,7 +1,7 @@
 package com.github.hakhakopyan.mydatastream;
 
 
-import com.github.hakhakopyan.mydatastream.mystream.ConvertingStream;
+import com.github.hakhakopyan.mydatastream.mystream.convertingstream.ConvertingStream;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGiver;
 import com.github.hakhakopyan.mydatastream.record.Record;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileType;

@@ -1,4 +1,4 @@
-package com.github.hakhakopyan.mydatastream.mystream;
+package com.github.hakhakopyan.mydatastream.mystream.actionthread;
 
 import com.github.hakhakopyan.mydatastream.Actions.Actionable;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGivable;

@@ -1,6 +1,7 @@
-package com.github.hakhakopyan.mydatastream.mystream;
+package com.github.hakhakopyan.mydatastream.mystream.convertingstream;
 
 
+import com.github.hakhakopyan.mydatastream.mystream.actionstream.ActionsStream;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGivable;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGiver;
 
