@@ -1,6 +1,6 @@
 package com.github.hakhakopyan.mydatastream.write_to_file;
 
-import com.github.hakhakopyan.mydatastream.record.Recordable;
+import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
 
 import java.io.BufferedWriter;
 import java.io.File;

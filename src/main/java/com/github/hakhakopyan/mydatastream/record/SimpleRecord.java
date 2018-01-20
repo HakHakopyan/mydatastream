@@ -1,5 +1,8 @@
 package com.github.hakhakopyan.mydatastream.record;
 
+import com.github.hakhakopyan.mydatastream.record.item.Item;
+import com.github.hakhakopyan.mydatastream.record.item.ItemType;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +26,7 @@ public class SimpleRecord extends AbstrRecord {
     }
 
     public void print(PrintWriter pr) {
-        pr.println(nodeName + " " + myItem.getValue() + " " + myItem.type);
+        pr.println(nodeName + " " + myItem.getValue() + " " + myItem.getType());
     }
 
     public void print(BufferedWriter out) {

@@ -1,5 +1,8 @@
 package com.github.hakhakopyan.mydatastream.record;
 
+import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
+import com.github.hakhakopyan.mydatastream.record.recordinterfaces.SimpleRecordContainer;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.PrintWriter;

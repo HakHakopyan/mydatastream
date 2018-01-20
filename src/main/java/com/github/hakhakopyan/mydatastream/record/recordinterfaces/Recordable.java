@@ -1,4 +1,4 @@
-package com.github.hakhakopyan.mydatastream.record;
+package com.github.hakhakopyan.mydatastream.record.recordinterfaces;
 
 import java.io.BufferedWriter;
 import java.io.PrintWriter;

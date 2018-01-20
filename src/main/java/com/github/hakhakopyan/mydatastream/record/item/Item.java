@@ -1,4 +1,4 @@
-package com.github.hakhakopyan.mydatastream.record;
+package com.github.hakhakopyan.mydatastream.record.item;
 
 public class Item {
     String value;

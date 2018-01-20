@@ -1,7 +1,7 @@
 package com.github.hakhakopyan.mydatastream.readfile;
 
 import com.github.hakhakopyan.mydatastream.record.Record;
-import com.github.hakhakopyan.mydatastream.record.Recordable;
+import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
 
 import java.io.File;
 import java.io.IOException;

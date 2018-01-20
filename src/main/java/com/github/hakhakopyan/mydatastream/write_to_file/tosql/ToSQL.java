@@ -1,8 +1,8 @@
 package com.github.hakhakopyan.mydatastream.write_to_file.tosql;
 
 
-import com.github.hakhakopyan.mydatastream.record.Recordable;
-import com.github.hakhakopyan.mydatastream.record.SimpleRecordContainer;
+import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
+import com.github.hakhakopyan.mydatastream.record.recordinterfaces.SimpleRecordContainer;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
 import com.github.hakhakopyan.mydatastream.representation.SQLRepresentation;
 

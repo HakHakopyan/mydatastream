@@ -1,4 +1,6 @@
-package com.github.hakhakopyan.mydatastream.record;
+package com.github.hakhakopyan.mydatastream.record.recordinterfaces;
+
+import com.github.hakhakopyan.mydatastream.record.SimpleRecord;
 
 import java.util.stream.Stream;
 

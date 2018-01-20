@@ -1,5 +1,7 @@
 package com.github.hakhakopyan.mydatastream.record;
 
+import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
+
 public abstract class AbstrRecord implements Recordable {
     String nodeName;
 
