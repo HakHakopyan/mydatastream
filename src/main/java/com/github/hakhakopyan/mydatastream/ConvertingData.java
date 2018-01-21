@@ -3,12 +3,10 @@ package com.github.hakhakopyan.mydatastream;
 
 import com.github.hakhakopyan.mydatastream.mystream.convertingstream.ConvertingStream;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGiver;
-import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileType;
 
 import java.io.IOException;
-import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 public class ConvertingData {
