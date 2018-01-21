@@ -3,7 +3,7 @@ package com.github.hakhakopyan.mydatastream;
 
 import com.github.hakhakopyan.mydatastream.mystream.convertingstream.ConvertingStream;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGiver;
-import com.github.hakhakopyan.mydatastream.record.Record;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileType;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class ConvertingData {
         System.out.println(Runtime.getRuntime().availableProcessors());
 
         FileReaderGiver fileReader = new FileReaderGiver(fileName1, fileName2);
-        Predicate<Record> myPr = x->x.IsEmptyRecord();
+        Predicate<CompositeRecord> myPr = x->x.isEmpty();
         myPr.and(x->x.getName()=="book");
         /*
         Nodable nodes = ReadXML.ReadFile(new File(fileName));

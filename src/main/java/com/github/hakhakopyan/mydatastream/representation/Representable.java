@@ -1,7 +1,7 @@
 package com.github.hakhakopyan.mydatastream.representation;
 
 
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
+import com.github.hakhakopyan.mydatastream.record.Recordable;
 
 import java.util.stream.Stream;
 

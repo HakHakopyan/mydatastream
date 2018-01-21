@@ -1,15 +1,16 @@
 package com.github.hakhakopyan.mydatastream.representation;
 
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.record.item.ItemType;
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.SimpleRecordContainer;
 
 import java.util.stream.Stream;
 
 public class SQLRepresentation {// implements Representable
     //@Override
-    public static Stream<String> GetRepresentation(SimpleRecordContainer baseRecord) {
-        SimpleRecordContainer record = baseRecord.GetRecordContainSimpleNodes();
-        Stream<String> recordStream = record.getSimpleRecordsStream()
+    public static Stream<String> GetRepresentation(CompositeRecordable baseRecord) {
+        //CompositeRecordable record = baseRecord.GetRecordContainSimpleNodes();
+        Stream<String> recordStream = baseRecord.getSimpleRecordsStream()
                 .map(r ->
                 "'" + r.getName() + "', "
                 + ((r.getItem().getType() == ItemType.TEXT) ? "'" + r.getItem().getValue() + "'" : "NULL") + ", "

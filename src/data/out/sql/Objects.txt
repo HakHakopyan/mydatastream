@@ -8,9 +8,9 @@ INSERT INTO objects VALUES (1, 2);
 
 INSERT INTO objects VALUES (2, 3);
 
-INSERT INTO objects VALUES (1, 4);
+INSERT INTO objects VALUES (2, 4);
 
-INSERT INTO objects VALUES (2, 5);
+INSERT INTO objects VALUES (1, 5);
 
 INSERT INTO objects VALUES (2, 6);
 

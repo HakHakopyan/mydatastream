@@ -4,7 +4,7 @@ import com.github.hakhakopyan.mydatastream.Actions.Actionable;
 import com.github.hakhakopyan.mydatastream.Actions.Filter;
 import com.github.hakhakopyan.mydatastream.mystream.actionthread.ActionBaseThread;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGivable;
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileType;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
 
@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 
 public class ActionsStream {
     List<Actionable> myActions = new ArrayList<>();
@@ -36,13 +35,13 @@ public class ActionsStream {
         return this;
     }
 
-    public ActionsStream filter(Predicate<Recordable> condition) {
+    public ActionsStream filter(Predicate<CompositeRecordable> condition) {
         myActions.add(new Filter(condition));
 
         return this;
     }
 
-    public ActionsStream format(UnaryOperator<>)
+    //public ActionsStream format(UnaryOperator<>)
 
     public void collect(FileType fileType) throws IOException {
         FileWritable fileWriter = fileType.getFileWriter();

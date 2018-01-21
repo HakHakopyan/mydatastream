@@ -1,8 +1,9 @@
 package com.github.hakhakopyan.mydatastream.readfile;
 
-import com.github.hakhakopyan.mydatastream.record.Record;
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
-import com.github.hakhakopyan.mydatastream.record.SimpleRecord;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
+import com.github.hakhakopyan.mydatastream.record.Recordable;
+import com.github.hakhakopyan.mydatastream.record.simple_record.SimpleRecord;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -21,8 +22,8 @@ public class XMLReader extends AbstrFileReader {
     }
 
     @Override
-    Recordable readFile(File file) {
-        Recordable readNodes = null;
+    FileReadable readFile(File file) {
+        CompositeRecordable readNodes = null;
         //Node root = null;
         Document document = null;
         try {
@@ -38,7 +39,7 @@ public class XMLReader extends AbstrFileReader {
             // записываем имя корневого элемента
             //readNodes = new Record(root.getNodeName());
             // Просматриваем все подэлементы корневого
-            readNodes = readNode(root);
+            readNodes = (CompositeRecordable) readNode(root);
 
         } catch (ParserConfigurationException ex) {
             ex.printStackTrace(System.out);
@@ -47,7 +48,7 @@ public class XMLReader extends AbstrFileReader {
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
-        return readNodes;
+        return (FileReadable) readNodes;
     }
 
     private  static Recordable readNode(Node node) {
@@ -55,12 +56,12 @@ public class XMLReader extends AbstrFileReader {
 
         NodeList nodeList = node.getChildNodes();
         if (nodeList.getLength() > 1) {
-            readNodes = new Record(node.getNodeName());
+            readNodes = new CompositeRecord(node.getNodeName());
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node innerNode = nodeList.item(i);
                 // Если нода не текст, то это элемент - заходим внутрь
                 if (innerNode.getNodeType() != Node.TEXT_NODE) {
-                    ((Record) readNodes).setNode(readNode(innerNode));
+                    ((CompositeRecord) readNodes).setRecord(readNode(innerNode));
                 }
             }
         } else {

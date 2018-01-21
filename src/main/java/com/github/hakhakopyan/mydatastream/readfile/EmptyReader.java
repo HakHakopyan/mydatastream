@@ -1,12 +1,12 @@
 package com.github.hakhakopyan.mydatastream.readfile;
 
-import com.github.hakhakopyan.mydatastream.record.EmptyRecord;
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.EmptyCompositeRecord;
 
 public class EmptyReader implements FileReadable {
     @Override
-    public Recordable getRecord() {
-        return new EmptyRecord();
+    public CompositeRecordable getCompositeRecord() {
+        return new EmptyCompositeRecord();
     }
 
     @Override

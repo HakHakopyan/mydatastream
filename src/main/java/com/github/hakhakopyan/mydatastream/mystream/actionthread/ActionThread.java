@@ -2,7 +2,7 @@ package com.github.hakhakopyan.mydatastream.mystream.actionthread;
 
 import com.github.hakhakopyan.mydatastream.Actions.Actionable;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGivable;
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
 
 import java.io.IOException;
@@ -16,15 +16,15 @@ public class ActionThread extends AbstrActionThread {
 
     @Override
     public void run() {
-        Recordable record;
-        while (!(record  = myReader.getFileReader().getRecord()).IsEmptyRecord()) {
+        CompositeRecordable record;
+        while (!(record  = myReader.getFileReader().getCompositeRecord()).isEmpty()) {
             for (Actionable action: myActions) {
                 record = action.action(record);
-                if (record.IsEmptyRecord())
+                if (record.isEmpty())
                     break;
             }
 
-            if (!record.IsEmptyRecord()) {
+            if (!record.isEmpty()) {
                 synchronized (myWriter) {
                     try {
                         myWriter.write(Thread.currentThread().getName());

@@ -1,23 +1,23 @@
 package com.github.hakhakopyan.mydatastream.Actions;
 
-import com.github.hakhakopyan.mydatastream.record.EmptyRecord;
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.EmptyCompositeRecord;
+import com.github.hakhakopyan.mydatastream.record.Recordable;
 
 
 import java.util.function.Predicate;
 
 public class Filter implements Actionable {
-    //Actionable myAction;
-    Predicate<Recordable> MyFilter;
+    Predicate<com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable> MyFilter;
 
-    public Filter(Predicate<Recordable> myFilter) {
-        //this.myAction = myAction;
+    public Filter(Predicate<com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable> myFilter) {
         MyFilter = myFilter;
     }
 
-    public Recordable action(Recordable record) {
+    @Override
+    public CompositeRecordable action(CompositeRecordable record) {
         if (MyFilter.test(record))
             return record;
-        return new EmptyRecord();
+        return new EmptyCompositeRecord();
     }
 }

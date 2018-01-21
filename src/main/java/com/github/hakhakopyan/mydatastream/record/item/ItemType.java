@@ -16,7 +16,11 @@ public enum ItemType {
     },
     TEXT("") {
         public String getRepresent(String str) throws ParseException {
-
+            return str;
+        }
+    },
+    NULL("") {
+        public String getRepresent(String str) throws ParseException {
             return str;
         }
     };

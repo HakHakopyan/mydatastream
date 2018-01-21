@@ -1,6 +1,6 @@
 package com.github.hakhakopyan.mydatastream.write_to_file;
 
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ToTXT implements FileWritable {
-    static final String TXT_FILE_NAME = "com.github.hakhakopyan.convertingdata.src\\Writer.txt";
+    static final String TXT_FILE_NAME = "com.github.hakhakopyan.convertingdata.src//Writer.txt";
     FileWriter myFR;
     BufferedWriter myBR;
 
@@ -19,9 +19,9 @@ public class ToTXT implements FileWritable {
     }
 
     @Override
-    public synchronized void write(Recordable record) {
+    public synchronized void write(CompositeRecordable record) {
         synchronized(this.myBR) {
-                record.print(this.myBR);
+                //record.print(this.myBR);
             }
     }
 

@@ -1,8 +1,9 @@
 package com.github.hakhakopyan.mydatastream.write_to_file.tosql;
 
 
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.Recordable;
-import com.github.hakhakopyan.mydatastream.record.recordinterfaces.SimpleRecordContainer;
+import com.github.hakhakopyan.mydatastream.record.Recordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
 import com.github.hakhakopyan.mydatastream.representation.SQLRepresentation;
 
@@ -72,14 +73,14 @@ public class ToSQL implements FileWritable {
     }
 
     @Override
-    public synchronized void write(Recordable record) throws IOException {
+    public synchronized void write(CompositeRecordable record) throws IOException {
         boolean exist = mySQLObjects.isExist(record.getName());
         SQLObjectable sqlObject = mySQLObjects.add(record.getName());
         if (!exist) {
             writeAtObjectTypesFile(sqlObject);
         }
         writeAtObjectsFile(sqlObject);
-        writeAtParamsFile(sqlObject, (SimpleRecordContainer) record);
+        writeAtParamsFile(sqlObject, record);
     }
 
     @Override
@@ -111,7 +112,7 @@ public class ToSQL implements FileWritable {
         return true;
     }
 
-     private boolean writeAtParamsFile(SQLObjectable sqlObject, SimpleRecordContainer record) throws IOException {
+     private boolean writeAtParamsFile(SQLObjectable sqlObject, CompositeRecordable record) throws IOException {
          File file = new File(PARAMS_FILE);
          if (!file.exists())
              return false;

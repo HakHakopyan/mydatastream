@@ -1,19 +1,15 @@
 package com.github.hakhakopyan.mydatastream.record.item;
 
-public class Item {
+public class MyItem implements Itemable {
     String value;
     ItemType type;
 
-    public static Item getEmptyItem() {
-        return new Item("", ItemType.NULL);
-    }
-
-    public Item(String value, ItemType type) {
+    public MyItem(String value, ItemType type) {
         this.value = value;
         this.type = type;
     }
 
-    public Item(Item item) {
+    public MyItem(MyItem item) {
         this(item.getValue(), item.getType());
     }
 
@@ -31,5 +27,9 @@ public class Item {
 
     public void setType(ItemType type) {
         this.type = type;
+    }
+
+    public static MyItem getEmptyItem() {
+        return new MyItem("", ItemType.NULL);
     }
 }
