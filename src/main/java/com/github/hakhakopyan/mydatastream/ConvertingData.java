@@ -26,7 +26,7 @@ public class ConvertingData {
         ConvertingStream.of(fileName);
         */
         UnaryOperator<CompositeRecordable> myOp = (r) -> {
-            if (r.getSimpleRecord("Date").getName().equals("1966"))
+            if (r.getSimpleRecord("Date").getItem().getValue().equals("1966"))
                 r.getSimpleRecord("Cost").getItem().setValue("15");
             return r;
         };
