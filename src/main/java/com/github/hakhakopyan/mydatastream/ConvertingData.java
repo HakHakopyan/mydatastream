@@ -21,34 +21,18 @@ public class ConvertingData {
         FileReaderGiver fileReader = new FileReaderGiver(fileName1, fileName2);
         Predicate<CompositeRecord> myPr = x->x.isEmpty();
         myPr.and(x->x.getName()=="book");
-        /*
-        Nodable nodes = ReadXML.ReadFile(new File(fileName));
-        ConvertingStream.of(fileName);
-        */
+
         UnaryOperator<CompositeRecordable> myOp = (r) -> {
             if (r.getSimpleRecord("Date").getItem().getValue().equals("1966"))
                 r.getSimpleRecord("Cost").getItem().setValue("15");
             return r;
         };
+
         ConvertingStream
                 .of(fileName1, fileName2)
                 .paralelize(2)
                 .filter(x -> x.getName() == "Book")
                 .change(myOp)
                 .collect(FileType.SQL);
-
-        /*
-        try (PrintWriter pw = new PrintWriter(System.out)) {
-            //fileReader.GetNode().print(pw);
-        } catch (NullPointerException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        Stream<String> stringStream = Files.lines(Paths.get(fileName1));
-        */
-        //main.java.write_to_file.to_sql.ToSQL.createTables();
-        //main.java.write_to_file.to_sql.ToSQL.writeParamsAtFile(nodes);
-
-
     }
 }
