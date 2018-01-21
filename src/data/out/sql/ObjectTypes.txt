@@ -4,5 +4,3 @@ param_name VARCHAR2 not null);
 
 INSERT INTO object_types VALUES (1, 'Book');
 
-INSERT INTO object_types VALUES (2, 'person');
-

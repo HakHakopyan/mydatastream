@@ -5,47 +5,29 @@ value_text VARCHAR2,
 value_date DATE );
 
 INSERT ALL
-INTO params VALUES(1,'Title', 'Yogasana Vijnana: the Science of Yoga', NULL)
-INTO params VALUES(1,'Author', 'Dhirendra Brahmachari', NULL)
-INTO params VALUES(1,'Date', '1966', NULL)
-INTO params VALUES(1,'ISBN', '81-40-34319-4', NULL)
-INTO params VALUES(1,'Publisher', 'Dhirendra Yoga Publications', NULL)
-INTO params VALUES(1,'Cost', '11.50', NULL)
+INTO params VALUES(1,'Title', 'The First and Last Freedom', NULL)
+INTO params VALUES(1,'Author', 'J. Krishnamurti', NULL)
+INTO params VALUES(1,'Date', '1954', NULL)
+INTO params VALUES(1,'ISBN', '0-06-064831-7', NULL)
+INTO params VALUES(1,'Publisher', 'Harper & Row', NULL)
+INTO params VALUES(1,'Cost', '2.95', NULL)
 SELECT * FROM dual;
 
 INSERT ALL
-INTO params VALUES(2,'Title', 'The First and Last Freedom', NULL)
-INTO params VALUES(2,'Author', 'J. Krishnamurti', NULL)
-INTO params VALUES(2,'Date', '1954', NULL)
-INTO params VALUES(2,'ISBN', '0-06-064831-7', NULL)
-INTO params VALUES(2,'Publisher', 'Harper & Row', NULL)
-INTO params VALUES(2,'Cost', '2.95', NULL)
+INTO params VALUES(2,'Title', 'Eugene Onegin', NULL)
+INTO params VALUES(2,'Author', 'Alexander Pushkin', NULL)
+INTO params VALUES(2,'Date', '1831', NULL)
+INTO params VALUES(2,'ISBN', '81-40-34319-4', NULL)
+INTO params VALUES(2,'Publisher', 'Dhirendra Yoga Publications', NULL)
+INTO params VALUES(2,'Cost', '260', NULL)
 SELECT * FROM dual;
 
 INSERT ALL
-INTO params VALUES(3,'name', 'Киса Воробьянинов', NULL)
-INTO params VALUES(3,'email', 'kisa@12.com', NULL)
-INTO params VALUES(3,'phone', '999-986-5432', NULL)
-SELECT * FROM dual;
-
-INSERT ALL
-INTO params VALUES(4,'name', 'Остап Бендер', NULL)
-INTO params VALUES(4,'email', 'ostap@12.com', NULL)
-INTO params VALUES(4,'phone', '999-987-6543', NULL)
-SELECT * FROM dual;
-
-INSERT ALL
-INTO params VALUES(5,'Title', 'Eugene Onegin', NULL)
-INTO params VALUES(5,'Author', 'Alexander Pushkin', NULL)
-INTO params VALUES(5,'Date', '1831', NULL)
-INTO params VALUES(5,'ISBN', '81-40-34319-4', NULL)
-INTO params VALUES(5,'Publisher', 'Dhirendra Yoga Publications', NULL)
-INTO params VALUES(5,'Cost', '260', NULL)
-SELECT * FROM dual;
-
-INSERT ALL
-INTO params VALUES(6,'name', 'Мадам Грицацуева', NULL)
-INTO params VALUES(6,'email', 'madam@12.com', NULL)
-INTO params VALUES(6,'phone', '999-985-4321', NULL)
+INTO params VALUES(3,'Title', 'Yogasana Vijnana: the Science of Yoga', NULL)
+INTO params VALUES(3,'Author', 'Dhirendra Brahmachari', NULL)
+INTO params VALUES(3,'Date', '1966', NULL)
+INTO params VALUES(3,'ISBN', '81-40-34319-4', NULL)
+INTO params VALUES(3,'Publisher', 'Dhirendra Yoga Publications', NULL)
+INTO params VALUES(3,'Cost', '11.50', NULL)
 SELECT * FROM dual;
 
