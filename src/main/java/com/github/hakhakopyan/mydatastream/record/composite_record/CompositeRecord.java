@@ -40,14 +40,9 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
 
     @Override
     public Stream<SimpleRecordable> getSimpleRecordsStream() {
-        try {
-            return this.myNodes.stream()
+        return this.myNodes.stream()
                     .filter(x -> x.isSimpleRecord())
                     .map(x -> (SimpleRecordable) x);
-        } catch (ClassCastException ex) {
-            System.out.println("We finde Exception " + ex.getMessage());
-        }
-        return null;
     }
 
     @Override
