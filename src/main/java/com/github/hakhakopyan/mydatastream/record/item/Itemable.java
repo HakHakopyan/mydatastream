@@ -1,5 +1,7 @@
 package com.github.hakhakopyan.mydatastream.record.item;
 
+import java.text.ParseException;
+
 public interface Itemable {
     String getValue();
 
@@ -7,5 +9,5 @@ public interface Itemable {
 
     ItemType getType();
 
-    void setType(ItemType type);
+    void setType(ItemType type) throws ParseException;
 }

@@ -5,27 +5,27 @@ value_text VARCHAR2,
 value_date DATE );
 
 INSERT ALL
-INTO params VALUES(1,'Title', 'The First and Last Freedom', NULL)
-INTO params VALUES(1,'Author', 'J. Krishnamurti', NULL)
-INTO params VALUES(1,'Date', '1954', NULL)
-INTO params VALUES(1,'ISBN', '0-06-064831-7', NULL)
-INTO params VALUES(1,'Publisher', 'Harper & Row', NULL)
-INTO params VALUES(1,'Cost', '2.95', NULL)
+INTO params VALUES(1,'Title', 'Yogasana Vijnana: the Science of Yoga', NULL)
+INTO params VALUES(1,'Author', 'Dhirendra Brahmachari', NULL)
+INTO params VALUES(1,'Date', NULL, Sat Jan 01 00:00:00 MSK 1966)
+INTO params VALUES(1,'ISBN', '81-40-34319-4', NULL)
+INTO params VALUES(1,'Publisher', 'Dhirendra Yoga Publications', NULL)
+INTO params VALUES(1,'Cost', '15', NULL)
 SELECT * FROM dual;
 
 INSERT ALL
-INTO params VALUES(2,'Title', 'Yogasana Vijnana: the Science of Yoga', NULL)
-INTO params VALUES(2,'Author', 'Dhirendra Brahmachari', NULL)
-INTO params VALUES(2,'Date', '1966', NULL)
-INTO params VALUES(2,'ISBN', '81-40-34319-4', NULL)
-INTO params VALUES(2,'Publisher', 'Dhirendra Yoga Publications', NULL)
-INTO params VALUES(2,'Cost', '15', NULL)
+INTO params VALUES(2,'Title', 'The First and Last Freedom', NULL)
+INTO params VALUES(2,'Author', 'J. Krishnamurti', NULL)
+INTO params VALUES(2,'Date', NULL, Fri Jan 01 00:00:00 MSK 1954)
+INTO params VALUES(2,'ISBN', '0-06-064831-7', NULL)
+INTO params VALUES(2,'Publisher', 'Harper & Row', NULL)
+INTO params VALUES(2,'Cost', '2.95', NULL)
 SELECT * FROM dual;
 
 INSERT ALL
 INTO params VALUES(3,'Title', 'Eugene Onegin', NULL)
 INTO params VALUES(3,'Author', 'Alexander Pushkin', NULL)
-INTO params VALUES(3,'Date', '1831', NULL)
+INTO params VALUES(3,'Date', NULL, Sat Jan 01 00:00:00 MSK 1831)
 INTO params VALUES(3,'ISBN', '81-40-34319-4', NULL)
 INTO params VALUES(3,'Publisher', 'Dhirendra Yoga Publications', NULL)
 INTO params VALUES(3,'Cost', '260', NULL)

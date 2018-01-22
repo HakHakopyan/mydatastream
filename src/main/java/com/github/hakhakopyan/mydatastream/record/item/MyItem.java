@@ -1,5 +1,7 @@
 package com.github.hakhakopyan.mydatastream.record.item;
 
+import java.text.ParseException;
+
 public class MyItem implements Itemable {
     String value;
     ItemType type;
@@ -25,8 +27,9 @@ public class MyItem implements Itemable {
         return type;
     }
 
-    public void setType(ItemType type) {
+    public void setType(ItemType type) throws ParseException {
         this.type = type;
+        this.value = this.type.getRepresent(this.value);
     }
 
     public static MyItem getEmptyItem() {

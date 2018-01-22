@@ -3,16 +3,18 @@ package com.github.hakhakopyan.mydatastream.record.composite_record;
 import com.github.hakhakopyan.mydatastream.readfile.FileReadable;
 import com.github.hakhakopyan.mydatastream.record.AbstractBaseRecord;
 import com.github.hakhakopyan.mydatastream.record.Recordable;
+import com.github.hakhakopyan.mydatastream.record.item.ItemType;
 import com.github.hakhakopyan.mydatastream.record.item.Itemable;
 import com.github.hakhakopyan.mydatastream.record.item.MyItem;
 import com.github.hakhakopyan.mydatastream.record.simple_record.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CompositeRecord extends AbstractBaseRecord implements CompositeRecordable, FileReadable{
+public class CompositeRecord extends AbstractBaseRecord implements CompositeRecordable, FileReadable, Formatable{
 
     List<Recordable> myNodes = new ArrayList<>();
 
@@ -90,5 +92,17 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
             return compositeRecords.get(0);
 
         return (CompositeRecord) new EmptyCompositeRecord();
+    }
+
+    @Override
+    public boolean setItemFormat(String itemName, ItemType itemType) {
+        try {
+            getItem(itemName).setType(itemType);
+            return true;
+        }catch (ParseException pe) {
+
+        }
+
+        return false;
     }
 }

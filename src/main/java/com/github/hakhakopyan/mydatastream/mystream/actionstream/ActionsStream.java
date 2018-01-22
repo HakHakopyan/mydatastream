@@ -3,9 +3,12 @@ package com.github.hakhakopyan.mydatastream.mystream.actionstream;
 import com.github.hakhakopyan.mydatastream.Actions.Actionable;
 import com.github.hakhakopyan.mydatastream.Actions.Changer;
 import com.github.hakhakopyan.mydatastream.Actions.Filter;
+import com.github.hakhakopyan.mydatastream.Actions.Formater;
 import com.github.hakhakopyan.mydatastream.mystream.actionthread.ActionBaseThread;
 import com.github.hakhakopyan.mydatastream.readfile.FileReaderGivable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.Formatable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileType;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
 
@@ -43,7 +46,11 @@ public class ActionsStream {
         return this;
     }
 
-    //public ActionsStream format(UnaryOperator<>)
+    public ActionsStream format(Predicate<Formatable> formater) {
+        myActions.add(new Formater(formater));
+
+        return this;
+    }
 
     public ActionsStream change(UnaryOperator<CompositeRecordable> unaryOperator) {
         myActions.add(new Changer(unaryOperator));
