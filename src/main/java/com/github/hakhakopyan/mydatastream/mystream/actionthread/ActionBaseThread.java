@@ -34,13 +34,5 @@ public class ActionBaseThread extends AbstrActionThread {
                 System.out.println(ex);
             }
         }
-
-        while (myActionThreads.stream().filter(x->x.isAlive()).count() > 0) {
-            try {
-                Thread.currentThread().wait(100);
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            }
-        }
     }
 }
