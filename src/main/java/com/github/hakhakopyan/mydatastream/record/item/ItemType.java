@@ -21,7 +21,7 @@ public enum ItemType {
     },
     NULL("") {
         public String getRepresent(String str) throws ParseException {
-            return str;
+            return "NULL";
         }
     };
 
