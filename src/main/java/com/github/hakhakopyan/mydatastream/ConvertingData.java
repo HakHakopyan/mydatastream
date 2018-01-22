@@ -20,8 +20,11 @@ public class ConvertingData {
 
         // Изменяем значение в поле Cost у Книги, у кторой поле Date равняется 1966
         UnaryOperator<CompositeRecordable> myOp = (r) -> {
-            if (r.getSimpleRecord("Date").getItem().getValue().equals("1966"))
+            //Длинная запись через получение поля с именем Date, получение у него экземпляра Item и т.д.
+            if (r.getSimpleRecord("Date").getItem().getValue().equals("1966")) {
+                // Короткая запись - сразу получаем экземпляр Item и устанавливаем значение
                 r.getItem("Cost").setValue("15");
+            }
             return r;
         };
 
