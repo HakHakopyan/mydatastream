@@ -14,18 +14,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CompositeRecord extends AbstractBaseRecord implements CompositeRecordable, FileReadable, Formatable{
+public class CompositeRecord extends AbstractBaseRecord implements CompositeRecordable, Formatable{
 
     List<Recordable> myNodes = new ArrayList<>();
+    String myParentRecordName = "";
 
     public CompositeRecord(String name) {
         super(name);
+    }
+
+    public CompositeRecord(String name, String parentName) {
+        super(name);
+        myParentRecordName = parentName;
     }
 
     public void setRecord(Recordable newRecord) {
         myNodes.add(newRecord);
     }
 
+    @Override
+    public String getMyParentRecordName() {
+        return myParentRecordName;
+    }
+
+    /*
     @Override
     public synchronized CompositeRecordable getCompositeRecord() {
         List<CompositeRecord> compositeRecordsList = myNodes.stream()
@@ -39,6 +51,7 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
         myNodes.remove(compositeRecord);
         return compositeRecord;
     }
+    */
 
     @Override
     public Stream<SimpleRecordable> getSimpleRecordsStream() {

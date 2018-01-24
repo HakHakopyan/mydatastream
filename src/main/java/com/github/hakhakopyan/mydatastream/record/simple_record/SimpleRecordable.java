@@ -11,5 +11,5 @@ public interface SimpleRecordable extends Recordable {
      * return instance of {@link MyItem} that is contained in instance of {@link SimpleRecord}
      * @return instance of {@link MyItem}
      */
-    public MyItem getItem();
+    MyItem getItem();
 }

@@ -5,29 +5,77 @@ value_text VARCHAR2,
 value_date DATE );
 
 INSERT ALL
-INTO params VALUES(1,'Title', 'The First and Last Freedom', NULL)
-INTO params VALUES(1,'Author', 'J. Krishnamurti', NULL)
-INTO params VALUES(1,'Date', NULL, Fri Jan 01 00:00:00 MSK 1954)
-INTO params VALUES(1,'ISBN', '0-06-064831-7', NULL)
-INTO params VALUES(1,'Publisher', 'Harper & Row', NULL)
-INTO params VALUES(1,'Cost', '2.95', NULL)
+INTO params VALUES(1,'Title', 'Yogasana Vijnana: the Science of Yoga', NULL)
+INTO params VALUES(1,'Author', 'Dhirendra Brahmachari', NULL)
+INTO params VALUES(1,'Date', '1966', NULL)
+INTO params VALUES(1,'ISBN', '81-40-34319-4', NULL)
+INTO params VALUES(1,'Publisher', 'Dhirendra Yoga Publications', NULL)
+INTO params VALUES(1,'Cost', '11.50', NULL)
 SELECT * FROM dual;
 
 INSERT ALL
-INTO params VALUES(2,'Title', 'Yogasana Vijnana: the Science of Yoga', NULL)
-INTO params VALUES(2,'Author', 'Dhirendra Brahmachari', NULL)
-INTO params VALUES(2,'Date', NULL, Sat Jan 01 00:00:00 MSK 1966)
-INTO params VALUES(2,'ISBN', '81-40-34319-4', NULL)
-INTO params VALUES(2,'Publisher', 'Dhirendra Yoga Publications', NULL)
-INTO params VALUES(2,'Cost', '15', NULL)
+INTO params VALUES(2,'Title', 'The First and Last Freedom', NULL)
+INTO params VALUES(2,'Author', 'J. Krishnamurti', NULL)
+INTO params VALUES(2,'Date', '1954', NULL)
+INTO params VALUES(2,'ISBN', '0-06-064831-7', NULL)
+INTO params VALUES(2,'Publisher', 'Harper ', NULL)
+INTO params VALUES(2,'Publisher', '&', NULL)
+INTO params VALUES(2,'Publisher', ' Row', NULL)
+INTO params VALUES(2,'Cost', '2.95', NULL)
 SELECT * FROM dual;
 
 INSERT ALL
 INTO params VALUES(3,'Title', 'Eugene Onegin', NULL)
 INTO params VALUES(3,'Author', 'Alexander Pushkin', NULL)
-INTO params VALUES(3,'Date', NULL, Sat Jan 01 00:00:00 MSK 1831)
+INTO params VALUES(3,'Date', '1831', NULL)
 INTO params VALUES(3,'ISBN', '81-40-34319-4', NULL)
 INTO params VALUES(3,'Publisher', 'Dhirendra Yoga Publications', NULL)
 INTO params VALUES(3,'Cost', '260', NULL)
+SELECT * FROM dual;
+
+INSERT ALL
+INTO params VALUES(4,'name', 'Остап Бендер', NULL)
+INTO params VALUES(4,'email', 'ostap@12.com', NULL)
+INTO params VALUES(4,'phone', '999-987-6543', NULL)
+SELECT * FROM dual;
+
+INSERT ALL
+INTO params VALUES(5,'name', 'Киса Воробьянинов', NULL)
+INTO params VALUES(5,'email', 'kisa@12.com', NULL)
+INTO params VALUES(5,'phone', '999-986-5432', NULL)
+SELECT * FROM dual;
+
+INSERT ALL
+INTO params VALUES(6,'name', 'Мадам Грицацуева', NULL)
+INTO params VALUES(6,'email', 'madam@12.com', NULL)
+INTO params VALUES(6,'phone', '999-985-4321', NULL)
+SELECT * FROM dual;
+
+INSERT ALL
+INTO params VALUES(7,'age', '29', NULL)
+INTO params VALUES(7,'name', 'Pankaj', NULL)
+INTO params VALUES(7,'gender', 'Male', NULL)
+INTO params VALUES(7,'role', 'Java Developer', NULL)
+SELECT * FROM dual;
+
+INSERT ALL
+INTO params VALUES(8,'age', '35', NULL)
+INTO params VALUES(8,'name', 'Lisa', NULL)
+INTO params VALUES(8,'gender', 'Female', NULL)
+INTO params VALUES(8,'role', 'CEO', NULL)
+SELECT * FROM dual;
+
+INSERT ALL
+INTO params VALUES(9,'age', '40', NULL)
+INTO params VALUES(9,'name', 'Tom', NULL)
+INTO params VALUES(9,'gender', 'Male', NULL)
+INTO params VALUES(9,'role', 'Manager', NULL)
+SELECT * FROM dual;
+
+INSERT ALL
+INTO params VALUES(10,'age', '25', NULL)
+INTO params VALUES(10,'name', 'Meghna', NULL)
+INTO params VALUES(10,'gender', 'Female', NULL)
+INTO params VALUES(10,'role', 'Manager', NULL)
 SELECT * FROM dual;
 

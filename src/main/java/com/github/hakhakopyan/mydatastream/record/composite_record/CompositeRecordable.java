@@ -38,4 +38,16 @@ public interface CompositeRecordable extends Recordable {
      * @return if instance of {@link CompositeRecord} is exist than return it, otherwise return instance of {@link EmptyCompositeRecord}
      */
     CompositeRecordable getCompositeRecord(String recordName);
+
+    /**
+     * set new instance of {@link SimpleRecordable} or {@link CompositeRecordable} into instance of {@link CompositeRecordable}
+     * @param newRecord instance of new Record
+     */
+    public void setRecord(Recordable newRecord);
+
+    /**
+     * Returns the name of the parent record to which the current record is inserted
+     * @return parent record name
+     */
+    public String getMyParentRecordName();
 }

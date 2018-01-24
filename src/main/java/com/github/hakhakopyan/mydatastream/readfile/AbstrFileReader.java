@@ -6,23 +6,13 @@ import java.io.File;
 import java.io.IOException;
 
 public abstract class AbstrFileReader implements FileReadable {
-    private FileReadable myRecords;
+    File myFile;
+
     public AbstrFileReader(String fileName) throws IOException {
-        File file = new File(fileName);
-        this.myRecords = readFile(file);
+        myFile = new File(fileName);
     }
 
-    @Override
-    public CompositeRecordable getCompositeRecord() {
-        synchronized (myRecords) {
-            return this.myRecords.getCompositeRecord();
-        }
-    }
-
-    abstract FileReadable readFile(File file);
-
-    @Override
-    public boolean isEmpty() {
-        return this.myRecords.isEmpty();
+    public File getFile() {
+        return this.myFile;
     }
 }

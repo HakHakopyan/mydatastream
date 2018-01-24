@@ -1,5 +1,7 @@
 package com.github.hakhakopyan.mydatastream.readfile;
 
+import com.github.hakhakopyan.mydatastream.readfile.xml_reader.XMLReader;
+
 import java.io.IOException;
 
 public class FileReaderFarm {
