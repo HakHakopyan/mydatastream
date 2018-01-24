@@ -1,14 +1,15 @@
 package com.github.hakhakopyan.mydatastream.record.simple_record;
 
 import com.github.hakhakopyan.mydatastream.record.AbstractBaseRecord;
+import com.github.hakhakopyan.mydatastream.record.item.Itemable;
 import com.github.hakhakopyan.mydatastream.record.item.MyItem;
 import com.github.hakhakopyan.mydatastream.record.item.ItemType;
 
 public class SimpleRecord extends AbstractBaseRecord implements SimpleRecordable {
 
-    MyItem myItem;
+    Itemable myItem;
 
-    public SimpleRecord(String name, MyItem item) {
+    public SimpleRecord(String name, Itemable item) {
         super(name);
         this.myItem = new MyItem(item);
     }
@@ -18,8 +19,13 @@ public class SimpleRecord extends AbstractBaseRecord implements SimpleRecordable
         this.myItem = new MyItem(value, ItemType.TEXT);
     }
 
+    public SimpleRecord(SimpleRecordable simpleRecord) {
+        super(simpleRecord.getName());
+        this.myItem = new MyItem(simpleRecord.getItem());
+    }
+
     @Override
-    public MyItem getItem() {
+    public Itemable getItem() {
         return this.myItem;
     }
 

@@ -11,7 +11,7 @@ public class MyItem implements Itemable {
         this.type = type;
     }
 
-    public MyItem(MyItem item) {
+    public MyItem(Itemable item) {
         this(item.getValue(), item.getType());
     }
 
@@ -32,7 +32,7 @@ public class MyItem implements Itemable {
         this.value = this.type.getRepresent(this.value);
     }
 
-    public static MyItem getEmptyItem() {
+    public static Itemable getEmptyItem() {
         return new MyItem("", ItemType.NULL);
     }
 }

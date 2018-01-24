@@ -4,6 +4,7 @@ package com.github.hakhakopyan.mydatastream;
 import com.github.hakhakopyan.mydatastream.mystream.convertingstream.ConvertingStream;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.record.item.ItemType;
+import com.github.hakhakopyan.mydatastream.record.simple_record.SimpleRecord;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileType;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
 import org.xml.sax.SAXException;
@@ -38,6 +39,7 @@ public class ConvertingData {
             return r;
         };
 
+        /*
         ConvertingStream
                 .of(fileName1, fileName2)
                 .paralelize(2)
@@ -49,25 +51,13 @@ public class ConvertingData {
         ConvertingStream
                 .of(fileName1, fileName2, fileName3)
                 .collect(FileType.SQL);
+        */
+
+        ConvertingStream
+                .of(fileName1)
+                .modify(r->r.setRecord(new SimpleRecord("Country", "Russia"), "author"))
+                .collect(FileType.SQL);
 
         BlockingQueue<CompositeRecordable> bQueue = new LinkedBlockingDeque<>();
-
-        /*
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-
-        try {
-            SAXParser parser = factory.newSAXParser();
-            parser.parse(new File(fileName1), new XMLParser(bQueue));
-            parser.parse(new File(fileName2), new XMLParser(bQueue));
-        } catch (ParserConfigurationException | SAXException ex) {
-
-        }
-
-        FileWritable fileWriter = FileType.SQL.getFileWriter();
-
-        for (CompositeRecordable compositeRecord: bQueue) {
-            fileWriter.write(compositeRecord);
-        }
-        */
     }
 }

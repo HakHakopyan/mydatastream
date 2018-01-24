@@ -11,6 +11,7 @@ import com.github.hakhakopyan.mydatastream.record.simple_record.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,25 +34,26 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
     }
 
     @Override
+    public void setRecord(Recordable newRecord, String previousRecordName) {
+            AtomicInteger index = new AtomicInteger(-1);
+
+            for (int i = 0; i < this.myNodes.size(); i++) {
+                if (this.myNodes.get(i).getName().toLowerCase().equals(previousRecordName.toLowerCase())) {
+                    index.set(i);
+                    break;
+                }
+            }
+            if (index.get() > -1) {
+                this.myNodes.add(index.get() + 1, newRecord);
+                System.out.println(index.get());
+            }
+
+    }
+
+    @Override
     public String getMyParentRecordName() {
         return myParentRecordName;
     }
-
-    /*
-    @Override
-    public synchronized CompositeRecordable getCompositeRecord() {
-        List<CompositeRecord> compositeRecordsList = myNodes.stream()
-                .filter(x->!x.isSimpleRecord())
-                .map(x->(CompositeRecord)x)
-                .collect(Collectors.toList());
-
-        if (myNodes.size() == 0 || compositeRecordsList.size() == 0)
-            return new EmptyCompositeRecord();
-        CompositeRecordable compositeRecord = compositeRecordsList.get(0);
-        myNodes.remove(compositeRecord);
-        return compositeRecord;
-    }
-    */
 
     @Override
     public Stream<SimpleRecordable> getSimpleRecordsStream() {

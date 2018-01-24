@@ -3,7 +3,8 @@ package com.github.hakhakopyan.mydatastream.mystream.actionstream;
 import com.github.hakhakopyan.mydatastream.Actions.Actionable;
 import com.github.hakhakopyan.mydatastream.Actions.Changer;
 import com.github.hakhakopyan.mydatastream.Actions.Filter;
-import com.github.hakhakopyan.mydatastream.Actions.Formater;
+import com.github.hakhakopyan.mydatastream.Actions.Modifier;
+import com.github.hakhakopyan.mydatastream.Actions.functional_interfaces.VoidReturnable;
 import com.github.hakhakopyan.mydatastream.mystream.actionthread.ActionBaseThread;
 import com.github.hakhakopyan.mydatastream.readfile.ReadBaseThread;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
@@ -50,13 +51,19 @@ public class ActionsStream {
     }
 
     public ActionsStream format(Predicate<Formatable> formater) {
-        myActions.add(new Formater(formater));
+        myActions.add(new Filter(formater));
 
         return this;
     }
 
     public ActionsStream change(UnaryOperator<CompositeRecordable> unaryOperator) {
         myActions.add(new Changer(unaryOperator));
+
+        return this;
+    }
+
+    public ActionsStream modify(VoidReturnable unaryOperator) {
+        myActions.add(new Modifier(unaryOperator));
 
         return this;
     }

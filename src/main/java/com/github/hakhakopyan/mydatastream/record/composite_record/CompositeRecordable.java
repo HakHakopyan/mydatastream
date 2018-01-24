@@ -46,6 +46,13 @@ public interface CompositeRecordable extends Recordable {
     public void setRecord(Recordable newRecord);
 
     /**
+     * set new instance of {@link SimpleRecordable} or {@link CompositeRecordable} into instance of {@link CompositeRecordable}
+     * @param newRecord instance of new Record
+     * @param previousRecordName The name of the record, after which needed to insert a new record
+     */
+    public void setRecord(Recordable newRecord, String previousRecordName);
+
+    /**
      * Returns the name of the parent record to which the current record is inserted
      * @return parent record name
      */

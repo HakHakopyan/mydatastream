@@ -23,7 +23,7 @@ public class ActionBaseThread extends AbstrActionThread {
     }
 
     public void stopThreads() {
-        //pool.shutdown();
+
         pool.shutdownNow().stream().map(t->(ActionThread) t).forEach(t->t.stopRun());
     }
 
