@@ -19,14 +19,16 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
 
     List<Recordable> myNodes = new ArrayList<>();
     String myParentRecordName = "";
+    int myNumber = -1;
 
     public CompositeRecord(String name) {
         super(name);
     }
 
-    public CompositeRecord(String name, String parentName) {
+    public CompositeRecord(String name, String parentName, int recordNumber) {
         super(name);
         myParentRecordName = parentName;
+        this.myNumber = recordNumber;
     }
 
     public void setRecord(Recordable newRecord) {
@@ -35,6 +37,8 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
 
     @Override
     public void setRecord(Recordable newRecord, String previousRecordName) {
+            // решил воспользоваться просто для интереса
+            // несколько потоков по логике программы не могут вызвать метод одной записи
             AtomicInteger index = new AtomicInteger(-1);
 
             for (int i = 0; i < this.myNodes.size(); i++) {
@@ -48,11 +52,6 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
                 System.out.println(index.get());
             }
 
-    }
-
-    @Override
-    public String getMyParentRecordName() {
-        return myParentRecordName;
     }
 
     @Override
@@ -92,7 +91,7 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
                 .collect(Collectors.toList());
         if (simpleRecords.size() > 0)
             return simpleRecords.get(0);
-        return (SimpleRecordable) new EmptySimpleRecord();
+        return new EmptySimpleRecord();
     }
 
     @Override
@@ -106,7 +105,7 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
         if (compositeRecords.size() > 0)
             return compositeRecords.get(0);
 
-        return (CompositeRecord) new EmptyCompositeRecord();
+        return new EmptyCompositeRecord();
     }
 
     @Override
@@ -119,5 +118,15 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
         }
 
         return false;
+    }
+
+    @Override
+    public String getMyParentRecordName() {
+        return myParentRecordName;
+    }
+
+    @Override
+    public int getIndex() {
+        return this.myNumber;
     }
 }

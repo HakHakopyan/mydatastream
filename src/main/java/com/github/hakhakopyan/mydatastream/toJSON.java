@@ -1,4 +1,5 @@
-package com.github.hakhakopyan.mydatastream;//import jdk.nashorn.internal.ir.debug.JSONWriter;
+package com.github.hakhakopyan.mydatastream;
+import jdk.nashorn.internal.ir.debug.JSONWriter;
 
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 

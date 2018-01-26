@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ToTXT implements FileWritable {
-    static final String TXT_FILE_NAME = "com.github.hakhakopyan.convertingdata.src//Writer.txt";
+    static final String TXT_FILE_NAME = "src//out//Writer.txt";
     FileWriter myFR;
     BufferedWriter myBR;
 
@@ -22,14 +22,6 @@ public class ToTXT implements FileWritable {
     public synchronized void write(CompositeRecordable record) {
         synchronized(this.myBR) {
                 //record.print(this.myBR);
-            }
-    }
-
-    public void write(String str) {
-            try {
-                this.myBR.write(str + "\n");
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
             }
     }
 

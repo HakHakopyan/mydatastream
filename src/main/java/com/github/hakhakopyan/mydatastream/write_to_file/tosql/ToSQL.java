@@ -1,8 +1,5 @@
 package com.github.hakhakopyan.mydatastream.write_to_file.tosql;
 
-
-import com.github.hakhakopyan.mydatastream.record.Recordable;
-import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
 import com.github.hakhakopyan.mydatastream.representation.SQLRepresentation;
@@ -15,9 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ToSQL implements FileWritable {
-    static final String PARAMS_FILE = "src//data//out//sql//Params.txt";
-    static final String OBJECT_TYPES_FILE = "src//data//out//sql//ObjectTypes.txt";
-    static final String OBJECTS_FILE = "src//data//out//sql//Objects.txt";
+    static final String PARAMS_FILE = "Params.txt";
+    static final String OBJECT_TYPES_FILE = "ObjectTypes.txt";
+    static final String OBJECTS_FILE = "Objects.txt";
 
     static final String PARAMS_TABLE_NAME = "params";
     static final String OBJECT_TYPES_TABLE_NAME = "object_types";
@@ -26,7 +23,7 @@ public class ToSQL implements FileWritable {
 
     SQLObjectsContainer mySQLObjects = new SQLObjectsContainer();
 
-    public ToSQL() {
+    public ToSQL(String path) {
         createTables();
     }
 
@@ -81,11 +78,6 @@ public class ToSQL implements FileWritable {
         }
         writeAtObjectsFile(sqlObject);
         writeAtParamsFile(sqlObject, record);
-    }
-
-    @Override
-    public void write(String str) throws IOException {
-
     }
 
     private boolean writeAtObjectTypesFile(SQLObjectable sqlObject) throws IOException {

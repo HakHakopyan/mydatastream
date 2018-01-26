@@ -8,6 +8,6 @@ import java.io.IOException;
 
 public interface FileWritable {
     public void write(CompositeRecordable record) throws IOException;
-    public void write(String str) throws IOException;
+    //public void write(String str) throws IOException;
     public void closeFile() throws IOException;
 }

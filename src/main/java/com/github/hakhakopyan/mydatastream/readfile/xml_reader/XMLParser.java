@@ -9,6 +9,7 @@ import org.xml.sax.ext.DefaultHandler2;
 
 import java.util.Stack;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class XMLParser extends DefaultHandler2 {
     BlockingQueue<CompositeRecordable> writeStream;
@@ -16,6 +17,9 @@ public class XMLParser extends DefaultHandler2 {
     //CompositeRecordable myCompositeRecord = null;
     String mySimpleRecordName = "";
     Stack<CompositeRecordable> myChainOfCompositeRecords = new Stack<CompositeRecordable>();
+    //по логике программы несолько потоков не могут воспользоваться одним парсером
+    // поэтому пользуюсь ради интереса
+    AtomicInteger myRecordNumber = new AtomicInteger(0);
 
     public XMLParser(BlockingQueue<CompositeRecordable> writeStream) {
         this.writeStream = writeStream;
@@ -42,7 +46,8 @@ public class XMLParser extends DefaultHandler2 {
 
         if (!mySimpleRecordName.equals("")) {
             if (myChainOfCompositeRecords.size() == 0) {
-                myChainOfCompositeRecords.push(new CompositeRecord(mySimpleRecordName, myBaseNodeName));
+                myChainOfCompositeRecords.push(
+                        new CompositeRecord(mySimpleRecordName, myBaseNodeName, myRecordNumber.getAndIncrement()));
             } else {
                 myChainOfCompositeRecords.push(new CompositeRecord(mySimpleRecordName));
             }

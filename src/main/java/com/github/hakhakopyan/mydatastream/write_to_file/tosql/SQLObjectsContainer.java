@@ -9,18 +9,12 @@ public class SQLObjectsContainer {
     private int lastObjectID = 0;
 
     public boolean isExist(String name) {
-        /*
-        Predicate<SQLObjectable> predicate = x->x.getObjectName().equals(name);
-        if (sqlObjects.stream().anyMatch(predicate))
-            return true;
-        */
-        return sqlObjects.containsKey(name);
 
+        return sqlObjects.containsKey(name);
     }
 
     public SQLObjectable add(String name) {
         if (!isExist(name)) {
-            //sqlObjects.add(new SQLObject(name, sqlObjects.size() + 1, FIRST_OBJECT_ID));
             sqlObjects.put(name, sqlObjects.size() + 1);
         }
         lastObjectID++;
