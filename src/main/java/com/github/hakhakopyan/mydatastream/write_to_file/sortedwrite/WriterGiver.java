@@ -14,7 +14,7 @@ public class WriterGiver implements WriterGivable {
     FileWritable mySQLWriter;
 
     public WriterGiver(FileType fileType) throws IOException {
-        this.myFileWriterType = myFileWriterType;
+        this.myFileWriterType = fileType;
         if (fileType == FileType.SQL) {
             mySQLWriter = fileType.getFileWriter();
         }

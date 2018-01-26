@@ -11,6 +11,7 @@ import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeReco
 import com.github.hakhakopyan.mydatastream.record.composite_record.Formatable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileType;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
+import com.github.hakhakopyan.mydatastream.write_to_file.sortedwrite.WriterGiver;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,16 +73,16 @@ public class ActionsStream {
         FileWritable fileWriter = fileType.getFileWriter();
         BlockingQueue<CompositeRecordable> blockingQueue = new LinkedBlockingDeque<>(100);
         // Запуск потока для чтения из файлов
-        Thread baseWriter = new Thread(
+        Thread baseReader = new Thread(
                 new ReadBaseThread(blockingQueue, this.myFilePathes));
         // Запуск основного потока для прогонки записей и записи в файл
-        ActionBaseThread baseAction = new ActionBaseThread(myActions, blockingQueue, fileWriter,
+        ActionBaseThread baseAction = new ActionBaseThread(myActions, blockingQueue, new WriterGiver(fileType),
                             threadCount, "ActionBaseStream");
 
-        baseWriter.start();
+        baseReader.start();
         baseAction.start();
         try {
-            baseWriter.join();
+            baseReader.join();
             while (!blockingQueue.isEmpty()) {
                 Thread.sleep(100);
             }

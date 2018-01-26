@@ -2,7 +2,7 @@ package com.github.hakhakopyan.mydatastream.mystream.actionthread;
 
 import com.github.hakhakopyan.mydatastream.Actions.Actionable;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
-import com.github.hakhakopyan.mydatastream.write_to_file.*;
+import com.github.hakhakopyan.mydatastream.write_to_file.sortedwrite.WriterGivable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +16,13 @@ public class ActionBaseThread extends AbstrActionThread {
     private final ExecutorService pool;
 
     public ActionBaseThread(List<Actionable> actions, BlockingQueue<CompositeRecordable> readStream,
-                            FileWritable writer, int threadCount, String threadName) {
-        super(actions, readStream, writer, threadName);
+                            WriterGivable writerGiver, int threadCount, String threadName) {
+        super(actions, readStream, writerGiver, threadName);
         this.myThreadCount = threadCount;
         pool = Executors.newFixedThreadPool(threadCount);
     }
 
     public void stopThreads() {
-
         pool.shutdownNow().stream().map(t->(ActionThread) t).forEach(t->t.stopRun());
     }
 
@@ -31,7 +30,8 @@ public class ActionBaseThread extends AbstrActionThread {
     public void run() {
 
         for (int i = 1; i <= myThreadCount; i++) {
-            pool.execute(new ActionThread(myActions, this.myReadStream, this.myWriter, "ActionStream_" + i));
+            pool.execute(new ActionThread(myActions, this.myReadStream, this.myWriterGiver,
+                    "ActionStream_" + i));
         }
          /*
         for (int i = 1; i <= myThreadCount; i++) {

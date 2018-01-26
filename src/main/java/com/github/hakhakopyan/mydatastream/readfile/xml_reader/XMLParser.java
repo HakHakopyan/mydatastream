@@ -1,5 +1,6 @@
 package com.github.hakhakopyan.mydatastream.readfile.xml_reader;
 
+import com.github.hakhakopyan.mydatastream.readfile.FileReadable;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.record.simple_record.SimpleRecord;
@@ -19,7 +20,7 @@ public class XMLParser extends DefaultHandler2 {
     Stack<CompositeRecordable> myChainOfCompositeRecords = new Stack<CompositeRecordable>();
     //по логике программы несолько потоков не могут воспользоваться одним парсером
     // поэтому пользуюсь ради интереса
-    AtomicInteger myRecordNumber = new AtomicInteger(0);
+    AtomicInteger myRecordNumber = new AtomicInteger(FileReadable.FIRST_RECORD_INDEX);
 
     public XMLParser(BlockingQueue<CompositeRecordable> writeStream) {
         this.writeStream = writeStream;

@@ -3,6 +3,7 @@ package com.github.hakhakopyan.mydatastream.mystream.actionthread;
 import com.github.hakhakopyan.mydatastream.Actions.Actionable;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
+import com.github.hakhakopyan.mydatastream.write_to_file.sortedwrite.WriterGivable;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,9 +13,9 @@ public class ActionThread extends AbstrActionThread {
 
     public ActionThread(List<Actionable> actions,
                         BlockingQueue<CompositeRecordable> readStream,
-                        FileWritable writer,
+                        WriterGivable writerGiver,
                         String threadName) {
-        super(actions, readStream, writer, threadName);
+        super(actions, readStream, writerGiver, threadName);
     }
 
     private boolean isStop = false;
@@ -36,10 +37,9 @@ public class ActionThread extends AbstrActionThread {
                 }
 
                 if (!record.isEmpty()) {
-                    synchronized (myWriter) {
+                    synchronized (myWriterGiver) {
                         try {
-                            myWriter.write(Thread.currentThread().getName());
-                            myWriter.write(record);
+                            myWriterGiver.getWriter(record).write(record);
                         } catch (IOException ex) {
                             // вывести сообщение в пул
                         }
