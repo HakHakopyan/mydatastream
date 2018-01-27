@@ -5,12 +5,13 @@ import com.github.hakhakopyan.mydatastream.record.item.*;
 import com.github.hakhakopyan.mydatastream.record.item.Itemable;
 import com.github.hakhakopyan.mydatastream.record.simple_record.*;
 
+import java.util.Iterator;
 import java.util.stream.Stream;
 
 /**
  * Interface for composite records (Record that contain other records)
  */
-public interface CompositeRecordable extends Recordable {
+public interface CompositeRecordable extends Recordable, Iterable<Recordable> {
     /**
      * returns all instances of {@link SimpleRecord}, even those contained in {@link CompositeRecord}
      * @return stream of {@link SimpleRecord}

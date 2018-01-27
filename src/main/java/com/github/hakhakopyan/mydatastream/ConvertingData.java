@@ -58,6 +58,11 @@ public class ConvertingData {
             return r;
         };
 
+        ConvertingStream
+                .of(fileName1, fileName2, fileName3)
+                .paralelize(2)
+                .collect(FileType.XML.setPath("src//data//out//xml//"));
+
         /*
         ConvertingStream
                 .of(fileName1, fileName2)
@@ -73,11 +78,11 @@ public class ConvertingData {
         */
 
         ConvertingStream
-                .of(fileName1)
-                .paralelize(2)
+                .of(fileName1, fileName3)
+                .paralelize(3)
+                .filter(x -> x.getName() == "Book")
                 .modify(r->r.setRecord(new SimpleRecord("Country", "Russia"), "Author"))
+                .format(x->x.setItemFormat("Date", ItemType.DATE.setMyFormat("yyyy")))
                 .collect(FileType.SQL);
-
-        BlockingQueue<CompositeRecordable> bQueue = new LinkedBlockingDeque<>();
     }
 }

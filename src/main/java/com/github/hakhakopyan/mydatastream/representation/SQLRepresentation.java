@@ -1,15 +1,19 @@
 package com.github.hakhakopyan.mydatastream.representation;
 
+import com.github.hakhakopyan.mydatastream.record.Recordable;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.record.item.ItemType;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
-public class SQLRepresentation {// implements Representable
-    //@Override
+public class SQLRepresentation {
+
     public static Stream<String> GetRepresentation(CompositeRecordable baseRecord) {
         //CompositeRecordable record = baseRecord.GetRecordContainSimpleNodes();
+
         Stream<String> recordStream = baseRecord.getSimpleRecordsStream()
                 .map(r ->
                 "'" + r.getName() + "', "

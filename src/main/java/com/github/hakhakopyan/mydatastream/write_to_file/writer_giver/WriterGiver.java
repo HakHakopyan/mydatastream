@@ -49,6 +49,10 @@ public class WriterGiver implements WriterGivable {
                 case TXT:
                     myWriters.put(record.getName(), new NarrowSortedWriter(this.myWriter, record.getName()));
                     break;
+                case XML:
+                    myWriters.put(record.getName(),
+                            new NarrowSortedWriter(this.myFileWriterType.getFileWriter(), record.getName()));
+                    break;
                 case NOT_WRITE:
                     return this.myWriter;
 
@@ -64,7 +68,8 @@ public class WriterGiver implements WriterGivable {
             this.myWriter.closeFile();
         else
             for (String key:keys) {
-                this.myWriters.get(keys).closeFile();
+            FileWritable fW = this.myWriters.get(key);
+            fW.closeFile();
             }
     }
 }

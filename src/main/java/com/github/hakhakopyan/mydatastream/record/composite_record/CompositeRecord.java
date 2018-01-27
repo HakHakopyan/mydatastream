@@ -10,6 +10,7 @@ import com.github.hakhakopyan.mydatastream.record.simple_record.*;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -17,7 +18,7 @@ import java.util.stream.Stream;
 
 public class CompositeRecord extends AbstractBaseRecord implements CompositeRecordable, Formatable{
 
-    List<Recordable> myRecords = new ArrayList<>();
+    protected List<Recordable> myRecords = new ArrayList<>();
     String myParentRecordName = "";
     int myNumber = FileReadable.FIRST_RECORD_INDEX - 1;
 
@@ -142,5 +143,10 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
             retStr += "\n  " + str;
         }
         return retStr + "\n};\n";
+    }
+
+    @Override
+    public Iterator<Recordable> iterator() {
+        return this.myRecords.iterator();
     }
 }

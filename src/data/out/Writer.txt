@@ -6,21 +6,11 @@ Book 0{
   Publisher - Dhirendra Yoga Publications
   Cost - 11.50
 };
-Book 1{ 
-  Title - The First and Last Freedom
-  Author - J. Krishnamurti
-  Date - 1954
-  ISBN - 0-06-064831-7
-  Publisher - Harper and Row
-  Cost - 2.95
-};
-Book 2{ 
-  Title - Eugene Onegin
-  Author - Alexander Pushkin
-  Date - 1831
-  ISBN - 81-40-34319-4
-  Publisher - Dhirendra Yoga Publications
-  Cost - 260
+Employee 0{ 
+  age - 29
+  name - Pankaj
+  gender - Male
+  role - Java Developer
 };
 person 0{ 
   name - Остап Бендер
@@ -37,11 +27,21 @@ person 2{
   email - madam@12.com
   phone - 999-985-4321
 };
-Employee 0{ 
-  age - 29
-  name - Pankaj
-  gender - Male
-  role - Java Developer
+Book 1{ 
+  Title - The First and Last Freedom
+  Author - J. Krishnamurti
+  Date - 1954
+  ISBN - 0-06-064831-7
+  Publisher - Harper and Row
+  Cost - 2.95
+};
+Book 2{ 
+  Title - Eugene Onegin
+  Author - Alexander Pushkin
+  Date - 1831
+  ISBN - 81-40-34319-4
+  Publisher - Dhirendra Yoga Publications
+  Cost - 260
 };
 Employee 1{ 
   age - 35

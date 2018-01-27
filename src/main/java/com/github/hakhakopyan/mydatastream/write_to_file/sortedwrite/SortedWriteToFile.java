@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 
+@Deprecated
 public class SortedWriteToFile implements FileWritable {
     FileWritable myFileWriter;
     Map<String, FileWritable> myRecords = new HashMap<>();

@@ -29,6 +29,18 @@ public enum FileType {
             return this;
         }
     },
+    XML("src//data//out//xml//") {
+        @Override
+        public FileWritable getFileWriter() throws IOException{
+            return new ToXML(this.myWritePath);
+        }
+
+        @Override
+        public FileType setPath(String path) {
+            this.myWritePath = path;
+            return this;
+        }
+    },
     NOT_WRITE("") {
         @Override
         public FileWritable getFileWriter() throws IOException{
