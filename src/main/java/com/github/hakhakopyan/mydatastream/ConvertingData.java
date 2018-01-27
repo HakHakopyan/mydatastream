@@ -58,9 +58,10 @@ public class ConvertingData {
             return r;
         };
 
+        // Выполнение без потоков, в основном потоке
         ConvertingStream
                 .of(fileName1, fileName2, fileName3)
-                .paralelize(2)
+                //.paralelize(2)
                 .collect(FileType.XML.setPath("src//data//out//xml//"));
 
         /*

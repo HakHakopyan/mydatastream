@@ -2,7 +2,10 @@ package com.github.hakhakopyan.mydatastream.mystream.actionstream;
 
 import com.github.hakhakopyan.mydatastream.Actions.*;
 import com.github.hakhakopyan.mydatastream.Actions.functional_interfaces.VoidReturnable;
+import com.github.hakhakopyan.mydatastream.mystream.MyQueueForNotParallelize;
 import com.github.hakhakopyan.mydatastream.mystream.actionthread.ActionBaseThread;
+import com.github.hakhakopyan.mydatastream.readfile.FileReadable;
+import com.github.hakhakopyan.mydatastream.readfile.FileReaderFarm;
 import com.github.hakhakopyan.mydatastream.readfile.ReadBaseThread;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
@@ -14,12 +17,14 @@ import com.github.hakhakopyan.mydatastream.write_to_file.writer_giver.WriterGive
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 public class ActionsStream {
     List<Actionable> myActions = new ArrayList<>();
@@ -84,13 +89,32 @@ public class ActionsStream {
     public void execute(FileType fileType) {
         try {
             if (this.threadCount > 0) {
+                // Выполение с потоками а асинхронным IO
                 executeWithThreads(fileType);
             } else {
-                // Дописать выпл без потоков
+                // Выполнение без потоков
+                executeWithOutThreads(fileType);
             }
         } catch (IOException ex) {
             // запись в лог
         }
+    }
+
+    public void executeWithOutThreads(FileType fileType) throws IOException {
+        List<FileReadable> fileReaders = Arrays.stream(myFilePathes)
+                .map(path-> FileReaderFarm.getFileReader(path))
+                .collect(Collectors.toList());
+
+        WriterGiver writerGiver = new WriterGiver(fileType);
+        BlockingQueue<CompositeRecordable> operationsDoer = new MyQueueForNotParallelize<>(this.myActions, writerGiver);
+
+        for (FileReadable fileReader: fileReaders) {
+            fileReader.readFile(operationsDoer);
+        }
+
+        writerGiver.closeFile();
+
+
     }
 
     public void executeWithThreads(FileType fileType) throws IOException {
