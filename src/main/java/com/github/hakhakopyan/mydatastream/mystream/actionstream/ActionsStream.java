@@ -1,30 +1,30 @@
 package com.github.hakhakopyan.mydatastream.mystream.actionstream;
 
-import com.github.hakhakopyan.mydatastream.Actions.Actionable;
-import com.github.hakhakopyan.mydatastream.Actions.Changer;
-import com.github.hakhakopyan.mydatastream.Actions.Filter;
-import com.github.hakhakopyan.mydatastream.Actions.Modifier;
+import com.github.hakhakopyan.mydatastream.Actions.*;
 import com.github.hakhakopyan.mydatastream.Actions.functional_interfaces.VoidReturnable;
 import com.github.hakhakopyan.mydatastream.mystream.actionthread.ActionBaseThread;
 import com.github.hakhakopyan.mydatastream.readfile.ReadBaseThread;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.EmptyCompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.Formatable;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileType;
 import com.github.hakhakopyan.mydatastream.write_to_file.FileWritable;
-import com.github.hakhakopyan.mydatastream.write_to_file.sortedwrite.WriterGiver;
+import com.github.hakhakopyan.mydatastream.write_to_file.writer_giver.WriterGiver;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 public class ActionsStream {
     List<Actionable> myActions = new ArrayList<>();
 
-    int threadCount = 1;
+    int threadCount = 0;
 
     String[] myFilePathes;
 
@@ -69,15 +69,40 @@ public class ActionsStream {
         return this;
     }
 
+    public CompositeRecordable reduce(BinaryOperator<CompositeRecordable> binaryOperator) {
+        Reducer myReducer = new Reducer(binaryOperator);
+        this.myActions.add(myReducer);
+        execute(FileType.NOT_WRITE);
+
+        return myReducer.getResult();
+    }
+
     public void collect(FileType fileType) throws IOException {
-        FileWritable fileWriter = fileType.getFileWriter();
+        execute(fileType);
+    }
+
+    public void execute(FileType fileType) {
+        try {
+            if (this.threadCount > 0) {
+                executeWithThreads(fileType);
+            } else {
+                // Дописать выпл без потоков
+            }
+        } catch (IOException ex) {
+            // запись в лог
+        }
+    }
+
+    public void executeWithThreads(FileType fileType) throws IOException {
         BlockingQueue<CompositeRecordable> blockingQueue = new LinkedBlockingDeque<>(100);
         // Запуск потока для чтения из файлов
         Thread baseReader = new Thread(
                 new ReadBaseThread(blockingQueue, this.myFilePathes));
+
+        WriterGiver writerGiver = new WriterGiver(fileType);
         // Запуск основного потока для прогонки записей и записи в файл
-        ActionBaseThread baseAction = new ActionBaseThread(myActions, blockingQueue, new WriterGiver(fileType),
-                            threadCount, "ActionBaseStream");
+        ActionBaseThread baseAction = new ActionBaseThread(myActions, blockingQueue, writerGiver,
+                threadCount, "ActionBaseStream");
 
         baseReader.start();
         baseAction.start();
@@ -91,6 +116,6 @@ public class ActionsStream {
             System.out.println(ex);
         }
 
-       fileWriter.closeFile();
+        writerGiver.closeFile();
     }
 }

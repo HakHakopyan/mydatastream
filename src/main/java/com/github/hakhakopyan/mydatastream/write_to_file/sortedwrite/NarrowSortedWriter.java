@@ -43,6 +43,6 @@ public class NarrowSortedWriter implements FileWritable {
 
     @Override
     public void closeFile() throws IOException {
-
+        this.myFileWriter.closeFile();
     }
 }

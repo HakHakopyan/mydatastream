@@ -35,4 +35,9 @@ public class MyItem implements Itemable {
     public static Itemable getEmptyItem() {
         return new MyItem("", ItemType.NULL);
     }
+
+    @Override
+    public String toString() {
+        return this.value;
+    }
 }

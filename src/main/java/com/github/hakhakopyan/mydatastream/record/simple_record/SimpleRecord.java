@@ -38,4 +38,9 @@ public class SimpleRecord extends AbstractBaseRecord implements SimpleRecordable
     public boolean isEmpty() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return this.getName() + " - " + this.myItem;
+    }
 }

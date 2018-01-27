@@ -1,15 +1,63 @@
-ActionStream_2
-person
-name Остап Бендер TEXT
-email ostap@12.com TEXT
-phone 999-987-6543 TEXT
-ActionStream_2
-person
-name Мадам Грицацуева TEXT
-email madam@12.com TEXT
-phone 999-985-4321 TEXT
-ActionStream_1
-person
-name Киса Воробьянинов TEXT
-email kisa@12.com TEXT
-phone 999-986-5432 TEXT
+Book 0{ 
+  Title - Yogasana Vijnana: the Science of Yoga
+  Author - Dhirendra Brahmachari
+  Date - 1966
+  ISBN - 81-40-34319-4
+  Publisher - Dhirendra Yoga Publications
+  Cost - 11.50
+};
+person 0{ 
+  name - Остап Бендер
+  email - ostap@12.com
+  phone - 999-987-6543
+};
+person 1{ 
+  name - Киса Воробьянинов
+  email - kisa@12.com
+  phone - 999-986-5432
+};
+person 2{ 
+  name - Мадам Грицацуева
+  email - madam@12.com
+  phone - 999-985-4321
+};
+Employee 0{ 
+  age - 29
+  name - Pankaj
+  gender - Male
+  role - Java Developer
+};
+Book 1{ 
+  Title - The First and Last Freedom
+  Author - J. Krishnamurti
+  Date - 1954
+  ISBN - 0-06-064831-7
+  Publisher - Harper and Row
+  Cost - 2.95
+};
+Book 2{ 
+  Title - Eugene Onegin
+  Author - Alexander Pushkin
+  Date - 1831
+  ISBN - 81-40-34319-4
+  Publisher - Dhirendra Yoga Publications
+  Cost - 260
+};
+Employee 1{ 
+  age - 35
+  name - Lisa
+  gender - Female
+  role - CEO
+};
+Employee 2{ 
+  age - 40
+  name - Tom
+  gender - Male
+  role - Manager
+};
+Employee 3{ 
+  age - 25
+  name - Meghna
+  gender - Female
+  role - Manager
+};

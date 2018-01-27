@@ -17,9 +17,9 @@ import java.util.stream.Stream;
 
 public class CompositeRecord extends AbstractBaseRecord implements CompositeRecordable, Formatable{
 
-    List<Recordable> myNodes = new ArrayList<>();
+    List<Recordable> myRecords = new ArrayList<>();
     String myParentRecordName = "";
-    int myNumber = -1;
+    int myNumber = FileReadable.FIRST_RECORD_INDEX - 1;
 
     public CompositeRecord(String name) {
         super(name);
@@ -32,7 +32,7 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
     }
 
     public void setRecord(Recordable newRecord) {
-        myNodes.add(newRecord);
+        myRecords.add(newRecord);
     }
 
     @Override
@@ -41,14 +41,14 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
             // несколько потоков по логике программы не могут вызвать метод одной записи
             AtomicInteger index = new AtomicInteger(-1);
 
-            for (int i = 0; i < this.myNodes.size(); i++) {
-                if (this.myNodes.get(i).getName().toLowerCase().equals(previousRecordName.toLowerCase())) {
+            for (int i = 0; i < this.myRecords.size(); i++) {
+                if (this.myRecords.get(i).getName().toLowerCase().equals(previousRecordName.toLowerCase())) {
                     index.set(i);
                     break;
                 }
             }
             if (index.get() > -1) {
-                this.myNodes.add(index.get() + 1, newRecord);
+                this.myRecords.add(index.get() + 1, newRecord);
                 System.out.println(index.get());
             }
 
@@ -56,7 +56,7 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
 
     @Override
     public Stream<SimpleRecordable> getSimpleRecordsStream() {
-        return this.myNodes.stream()
+        return this.myRecords.stream()
                     .filter(x -> x.isSimpleRecord())
                     .map(x -> (SimpleRecordable) x);
     }
@@ -96,7 +96,7 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
 
     @Override
     public CompositeRecordable getCompositeRecord(String recordName) {
-        List<CompositeRecord> compositeRecords = this.myNodes.stream()
+        List<CompositeRecord> compositeRecords = this.myRecords.stream()
                 .filter(x->!x.isSimpleRecord())
                 .filter(x->x.getName().toLowerCase().equals(recordName.toLowerCase()))
                 .map(x->(CompositeRecord) x)
@@ -128,5 +128,19 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
     @Override
     public int getIndex() {
         return this.myNumber;
+    }
+
+    @Override
+    public String toString() {
+        String retStr = this.getName() + " " + myNumber + "{ ";
+        List<String> recRepresent = myRecords.stream().map(r->r.toString()).collect(Collectors.toList());
+
+        if (recRepresent.isEmpty())
+            return retStr + "Emty }";
+
+        for (String str: recRepresent) {
+            retStr += "\n  " + str;
+        }
+        return retStr + "\n};\n";
     }
 }

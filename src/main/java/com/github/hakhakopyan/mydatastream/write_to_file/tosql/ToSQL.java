@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ToSQL implements FileWritable {
-    static final String PARAMS_FILE = "Params.txt";
-    static final String OBJECT_TYPES_FILE = "ObjectTypes.txt";
-    static final String OBJECTS_FILE = "Objects.txt";
+    String PARAMS_FILE = "Params.txt";
+    String OBJECT_TYPES_FILE = "ObjectTypes.txt";
+    String OBJECTS_FILE = "Objects.txt";
 
     static final String PARAMS_TABLE_NAME = "params";
     static final String OBJECT_TYPES_TABLE_NAME = "object_types";
@@ -24,6 +24,9 @@ public class ToSQL implements FileWritable {
     SQLObjectsContainer mySQLObjects = new SQLObjectsContainer();
 
     public ToSQL(String path) {
+        PARAMS_FILE = path + PARAMS_FILE;
+        OBJECT_TYPES_FILE = path + OBJECT_TYPES_FILE;
+        OBJECTS_FILE = path + OBJECTS_FILE;
         createTables();
     }
 

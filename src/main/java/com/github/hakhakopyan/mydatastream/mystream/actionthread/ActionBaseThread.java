@@ -2,7 +2,7 @@ package com.github.hakhakopyan.mydatastream.mystream.actionthread;
 
 import com.github.hakhakopyan.mydatastream.Actions.Actionable;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
-import com.github.hakhakopyan.mydatastream.write_to_file.sortedwrite.WriterGivable;
+import com.github.hakhakopyan.mydatastream.write_to_file.writer_giver.WriterGivable;
 
 import java.util.ArrayList;
 import java.util.List;

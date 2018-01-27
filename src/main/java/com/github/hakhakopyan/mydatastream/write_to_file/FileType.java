@@ -17,10 +17,22 @@ public enum FileType {
             return this;
         }
     },
-    TXT("src//out//") {
+    TXT("src//data//out//") {
         @Override
         public FileWritable getFileWriter() throws IOException{
-            return new ToTXT();
+            return new ToTXT(this.myWritePath);
+        }
+
+        @Override
+        public FileType setPath(String path) {
+            this.myWritePath = path;
+            return this;
+        }
+    },
+    NOT_WRITE("") {
+        @Override
+        public FileWritable getFileWriter() throws IOException{
+            return new NotWrite();
         }
 
         @Override

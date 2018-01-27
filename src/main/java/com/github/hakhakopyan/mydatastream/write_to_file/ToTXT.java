@@ -1,5 +1,6 @@
 package com.github.hakhakopyan.mydatastream.write_to_file;
 
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 
 import java.io.BufferedWriter;
@@ -8,21 +9,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ToTXT implements FileWritable {
-    static final String TXT_FILE_NAME = "src//out//Writer.txt";
+    String TXT_FILE_NAME = "Writer.txt";
     FileWriter myFR;
     BufferedWriter myBR;
 
-    public ToTXT() throws IOException {
+    public ToTXT(String path) throws IOException {
+        TXT_FILE_NAME = path + TXT_FILE_NAME;
         File file = new File(TXT_FILE_NAME);
+        if (file.exists())
+            System.out.println(file.getName());
         myFR = new FileWriter(file);
         myBR = new BufferedWriter(myFR);
     }
 
     @Override
-    public synchronized void write(CompositeRecordable record) {
+    public synchronized void write(CompositeRecordable record) throws IOException {
         synchronized(this.myBR) {
-                //record.print(this.myBR);
-            }
+            this.myBR.write(record.toString());
+        }
     }
 
     public void closeFile() throws IOException {
