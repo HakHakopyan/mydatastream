@@ -36,14 +36,12 @@ public class ConvertingData {
                     Double.valueOf(r2.getItem("Cost").getValue()) ? r1 : r2;
         };
 
-        /*
         System.out.println(
                 ConvertingStream
                         .of(fileName1).filter(r->r.getName() == "Book")
                         .paralelize()
                         .reduce(myBiOp)
         );
-        */
 
         ConvertingStream
                 .of(fileName1, fileName2, fileName3)
@@ -76,7 +74,8 @@ public class ConvertingData {
 
         ConvertingStream
                 .of(fileName1)
-                .modify(r->r.setRecord(new SimpleRecord("Country", "Russia"), "author"))
+                .paralelize(2)
+                .modify(r->r.setRecord(new SimpleRecord("Country", "Russia"), "Author"))
                 .collect(FileType.SQL);
 
         BlockingQueue<CompositeRecordable> bQueue = new LinkedBlockingDeque<>();
