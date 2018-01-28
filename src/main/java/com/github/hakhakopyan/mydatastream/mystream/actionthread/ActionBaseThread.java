@@ -22,10 +22,16 @@ public class ActionBaseThread extends AbstrActionThread {
         pool = Executors.newFixedThreadPool(threadCount);
     }
 
+    /**
+     * Остановка пула потоков
+     */
     public void stopThreads() {
         pool.shutdownNow().stream().map(t->(ActionThread) t).forEach(t->t.stopRun());
     }
 
+    /**
+     * Создаем пул потоков, который содержит потоки выполяющие прогонку записей и запись их в файл
+     */
     @Override
     public void run() {
 

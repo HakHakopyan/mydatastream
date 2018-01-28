@@ -17,11 +17,21 @@ public class NarrowSortedWriter implements FileWritable {
     SortedMap<Integer, CompositeRecordable> myRecords = new TreeMap<>();
     int lastWritedRecordIndex = FileReadable.FIRST_RECORD_INDEX - 1;
 
+    /**
+     *
+     * @param fileWriter An object that writes a specific record representation to a file
+     * @param recordsName contain name of records which we will skip for writing
+     */
     public NarrowSortedWriter(FileWritable fileWriter, String recordsName) {
         this.myFileWriter = fileWriter;
         this.myRecordsName = recordsName;
     }
 
+    /**
+     * implements a sorted records write
+     * @param record instance of record which representation needed to write
+     * @throws IOException if with write in file had problems
+     */
     @Override
     public synchronized void write(CompositeRecordable record) throws IOException {
         if (!myRecordsName.equals(record.getName()))

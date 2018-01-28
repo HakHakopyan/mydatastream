@@ -1,10 +1,14 @@
 package com.github.hakhakopyan.mydatastream.Actions;
 
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.record.composite_record.EmptyCompositeRecord;
 
 import java.util.function.BinaryOperator;
 
+/**
+ * Реализует метод для выполнения
+ */
 public class Reducer implements Actionable{
     /**
      * Результат выполения операции над двумя записями
@@ -36,6 +40,10 @@ public class Reducer implements Actionable{
         return this.myAnswer;
     }
 
+    /**
+     * Возвращает результат выполнения бинарной операции над всеми ранее переданными Составными Записями
+     * @return instance of {@link CompositeRecord}
+     */
     public CompositeRecordable getResult() {
         return this.myResult;
     }

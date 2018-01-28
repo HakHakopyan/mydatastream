@@ -12,16 +12,34 @@ import java.util.Stack;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Читает XML file без загрузки его в опертаивку и записывает по одной записи в {@link XMLParser#writeStream}
+ */
 public class XMLParser extends DefaultHandler2 {
+    /**
+     * В это поле идет запись считываемых записей
+     */
     BlockingQueue<CompositeRecordable> writeStream;
+    /**
+     * Имя поля в XML файле которое орамляет все читаемые записи
+     */
     String myBaseNodeName;
-    //CompositeRecordable myCompositeRecord = null;
+    /**
+     * Содержит имя записи которая не вляется составной, и содержит только значение
+     */
     String mySimpleRecordName = "";
+    /**
+     * Буферный стэк для записи промежуточных записей до формирования окончательной составной записи
+     */
     Stack<CompositeRecordable> myChainOfCompositeRecords = new Stack<CompositeRecordable>();
     //по логике программы несолько потоков не могут воспользоваться одним парсером
     // поэтому пользуюсь ради интереса
     AtomicInteger myRecordNumber = new AtomicInteger(FileReadable.FIRST_RECORD_INDEX);
 
+    /**
+     * Инициализируем поле {@link XMLParser#writeStream}
+     * @param writeStream
+     */
     public XMLParser(BlockingQueue<CompositeRecordable> writeStream) {
         this.writeStream = writeStream;
     }

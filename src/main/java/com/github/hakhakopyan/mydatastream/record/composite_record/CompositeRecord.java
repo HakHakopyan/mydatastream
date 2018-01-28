@@ -16,12 +16,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Представляет собой запись читаему из файла и методы работы с ней и ее модификаци
+ */
 public class CompositeRecord extends AbstractBaseRecord implements CompositeRecordable, Formatable{
 
     protected List<Recordable> myRecords = new ArrayList<>();
     String myParentRecordName = "";
     int myNumber = FileReadable.FIRST_RECORD_INDEX - 1;
 
+    /**
+     * Устанавливаем имя записи через вызов конструктора {@link AbstractBaseRecord#AbstractBaseRecord(String)}
+     * @param name
+     */
     public CompositeRecord(String name) {
         super(name);
     }

@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * Реализует поток выполняющий прогонку записей через настроенные действия и запись в файл
+ */
 public class ActionThread extends AbstrActionThread {
 
     public ActionThread(List<Actionable> actions,
@@ -19,10 +22,17 @@ public class ActionThread extends AbstrActionThread {
 
     private boolean isStop = false;
 
+    /**
+     * устанавливает {@link ActionThread#isStop} значение true
+     * и фактически остановку выполнения потока
+     */
     public void stopRun() {
         isStop = true;
     }
 
+    /**
+     * Запуск циклического выполнения прогонки записи через заданные действия и запись в файл
+     */
     @Override
     public void run() {
         CompositeRecordable record;

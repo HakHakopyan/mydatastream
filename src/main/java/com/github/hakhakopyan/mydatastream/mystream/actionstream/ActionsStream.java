@@ -26,17 +26,40 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
+/**
+ * Реализует настройку действий для обработки Записей по модели паттерна Builder
+ * Конечной фазой для запуска работы является вызов методов {@link ActionsStream#reduce(BinaryOperator)}
+ * and {@link ActionsStream#collect(FileType)}
+ */
 public class ActionsStream {
+    /**
+     * Содержит последовательность действий, которые настроил пользователь, применяемых к экземпляру {@link CompositeRecord}
+     */
     List<Actionable> myActions = new ArrayList<>();
 
+    /**
+     * Параметр для настройки асинхкронного выполнения IO и количества работающих потоков
+     */
     int threadCount = 0;
 
+    /**
+     * Содержит пути файлов с которых будет осуществляться чтение записей
+     */
     String[] myFilePathes;
 
+    /**
+     * Инициализируем {@link ActionsStream#myFilePathes}
+     * @param filePathes
+     */
     public ActionsStream(String[] filePathes) {
         this.myFilePathes = filePathes;
     }
 
+    /**
+     * Распаралелить работу системы и включить асинхронное чтние IO
+     * количество потоков равняется колиеству процессоров ЭВМ минус 1 для потока чтения
+     * @return
+     */
     public ActionsStream paralelize() {
         // уменьшаем на 1 так как у нас есть работающий поток для чтения записей из файла
         int procCount = Runtime.getRuntime().availableProcessors() - 1;
@@ -44,36 +67,79 @@ public class ActionsStream {
         return paralelize(procCount > 0 ? procCount : 1);
     }
 
+    /**
+     * Распаралелить работу системы и включить асинхронное чтние IO
+     * количество потоков равняется колиеству задаваемых потоков
+     * @param threadCount содержит количество работающих потоков, поток чтения не учитывается
+     * @return
+     */
     public ActionsStream paralelize(int threadCount) {
         this.threadCount = threadCount;
 
         return this;
     }
 
+    /**
+     * Принимаем лямбду выполняющую проверку записи на определенное условие
+     * и сохранение ее в instance of {@link Filter}
+     * Является промежуточной операцией
+     * @param condition содержит лямбду, выполняющую проверку записи на опреденное условие
+     * @return instance of {@link ActionsStream}
+     */
     public ActionsStream filter(Predicate<CompositeRecordable> condition) {
         myActions.add(new Filter(condition));
 
         return this;
     }
 
+    /**
+     * Принимает лямбду для форматирования поля с датой у записи
+     * и сохранение ее в instance of {@link Filter}
+     * Является промежуточной операцией
+     * @param formater Содержит лямбду, форматирующую значение поля с датой
+     * @return instance of {@link ActionsStream}
+     */
     public ActionsStream format(Predicate<Formatable> formater) {
         myActions.add(new Filter(formater));
 
         return this;
     }
 
+    /**
+     * Принимаем лямбду изменяющую запись, реализована на интерфейсе {@link UnaryOperator}
+     * и сохранение ее в instance of {@link Changer}
+     * Является промежуточной операцией
+     * @param unaryOperator содержит лямбду для изменения записи
+     * @return instance of {@link ActionsStream}
+     */
     public ActionsStream change(UnaryOperator<CompositeRecordable> unaryOperator) {
         myActions.add(new Changer(unaryOperator));
 
         return this;
     }
 
+    /**
+     * Принимаем лямбду изменяющую запись, реализована на интерфейсе {@link VoidReturnable}
+     * и сохранение ее в instance of {@link Modifier}
+     * Является промежуточной операцией
+     * @param unaryOperator содержит лямбду для изменения записи
+     * @return instance of {@link ActionsStream}
+     */
     public ActionsStream modify(VoidReturnable unaryOperator) {
         myActions.add(new Modifier(unaryOperator));
 
         return this;
     }
 
+    /**
+     * Принимает бинарную лямбду, выполняющую операция над двумя записями
+     * сохраненяет ее в instance of {@link Reducer}
+     * Запускает выполнение {@link ActionsStream#execute(FileType)} без вывода в файл
+     * получает результат у созданной до этого {@link Reducer} и возвращает его
+     * Является теминальной операцией
+     * @param binaryOperator
+     * @return instance of {@link CompositeRecord}
+     */
     public CompositeRecordable reduce(BinaryOperator<CompositeRecordable> binaryOperator) {
         Reducer myReducer = new Reducer(binaryOperator);
         this.myActions.add(myReducer);
@@ -82,10 +148,22 @@ public class ActionsStream {
         return myReducer.getResult();
     }
 
+    /**
+     * Принимает тип представления записи на выходе
+     * @param fileType содержит тип файла или тип представления на выходе
+     * @throws IOException if we have troubles with file IO
+     */
     public void collect(FileType fileType) throws IOException {
         execute(fileType);
     }
 
+    /**
+     * запускает выполнение {@link ActionsStream#executeWithOutThreads(FileType)}
+     * если пользователь не настроил паралельное выполнение через {@link ActionsStream#paralelize()}
+     * запускает выполнение {@link ActionsStream#executeWithThreads(FileType)}
+     * если пользователь настроил выполнение через потоки
+     * @param fileType
+     */
     public void execute(FileType fileType) {
         try {
             if (this.threadCount > 0) {
@@ -100,6 +178,11 @@ public class ActionsStream {
         }
     }
 
+    /**
+     * Выполнение в основном потоке
+     * @param fileType тип представления записи на выходе
+     * @throws IOException if we have troubles with file IO
+     */
     public void executeWithOutThreads(FileType fileType) throws IOException {
         List<FileReadable> fileReaders = Arrays.stream(myFilePathes)
                 .map(path-> FileReaderFarm.getFileReader(path))
@@ -117,6 +200,11 @@ public class ActionsStream {
 
     }
 
+    /**
+     * Выполнение через асинхронное IO и паралельную обработку записей
+     * @param fileType тип представления записи на выходе
+     * @throws IOException if we have troubles with file IO
+     */
     public void executeWithThreads(FileType fileType) throws IOException {
         BlockingQueue<CompositeRecordable> blockingQueue = new LinkedBlockingDeque<>(100);
         // Запуск потока для чтения из файлов

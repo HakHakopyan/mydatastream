@@ -1,5 +1,8 @@
 package com.github.hakhakopyan.mydatastream.write_to_file.tosql;
 
+/**
+ * Необходим во время записи в файл пердставления Record
+ */
 public class SQLObject implements SQLObjectable {
     private String objectName;
     private int objectTypeID;

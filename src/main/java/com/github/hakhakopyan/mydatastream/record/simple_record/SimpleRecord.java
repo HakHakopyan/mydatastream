@@ -5,6 +5,9 @@ import com.github.hakhakopyan.mydatastream.record.item.Itemable;
 import com.github.hakhakopyan.mydatastream.record.item.MyItem;
 import com.github.hakhakopyan.mydatastream.record.item.ItemType;
 
+/**
+ * Запись, которая содержит только значение, не является компонентной
+ */
 public class SimpleRecord extends AbstractBaseRecord implements SimpleRecordable {
 
     Itemable myItem;

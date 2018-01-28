@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.stream.Collectors;
 
+/**
+ * Работает в системе Асинхронное IO
+ * реализует поток считывающий из файлов записи
+ */
 public class ReadBaseThread implements Runnable {
     String[] myFilePathes;
     BlockingQueue<CompositeRecordable> myWriteStream;
@@ -23,6 +27,9 @@ public class ReadBaseThread implements Runnable {
         this.myWriteStream = writeStream;
     }
 
+    /**
+     * Считывание записей в {@link ReadBaseThread#myWriteStream}
+     */
     @Override
     public void run() {
         List<FileReadable> fileReaders = Arrays.stream(myFilePathes)

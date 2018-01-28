@@ -6,21 +6,6 @@ Book 0{
   Publisher - Dhirendra Yoga Publications
   Cost - 11.50
 };
-person 0{ 
-  name - Остап Бендер
-  email - ostap@12.com
-  phone - 999-987-6543
-};
-person 1{ 
-  name - Киса Воробьянинов
-  email - kisa@12.com
-  phone - 999-986-5432
-};
-person 2{ 
-  name - Мадам Грицацуева
-  email - madam@12.com
-  phone - 999-985-4321
-};
 Book 1{ 
   Title - The First and Last Freedom
   Author - J. Krishnamurti
@@ -36,6 +21,21 @@ Book 2{
   ISBN - 81-40-34319-4
   Publisher - Dhirendra Yoga Publications
   Cost - 260
+};
+person 0{ 
+  name - Остап Бендер
+  email - ostap@12.com
+  phone - 999-987-6543
+};
+person 1{ 
+  name - Киса Воробьянинов
+  email - kisa@12.com
+  phone - 999-986-5432
+};
+person 2{ 
+  name - Мадам Грицацуева
+  email - madam@12.com
+  phone - 999-985-4321
 };
 Employee 0{ 
   age - 29

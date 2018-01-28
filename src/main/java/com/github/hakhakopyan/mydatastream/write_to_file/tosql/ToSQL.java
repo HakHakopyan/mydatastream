@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Релизует запись в заданные SQL таблицы SQL представления записи
+ */
 public class ToSQL implements FileWritable {
     String PARAMS_FILE = "Params.txt";
     String OBJECT_TYPES_FILE = "ObjectTypes.txt";
@@ -23,6 +26,10 @@ public class ToSQL implements FileWritable {
 
     SQLObjectsContainer mySQLObjects = new SQLObjectsContainer();
 
+    /**
+     * Инициализация пути к файлам для записи sql пердставления записи
+     * @param path путь к файлам
+     */
     public ToSQL(String path) {
         PARAMS_FILE = path + PARAMS_FILE;
         OBJECT_TYPES_FILE = path + OBJECT_TYPES_FILE;
@@ -30,6 +37,9 @@ public class ToSQL implements FileWritable {
         createTables();
     }
 
+    /**
+     * запись
+     */
     public void createTables() {
         createObjectTypesTable();
         createParamTable();

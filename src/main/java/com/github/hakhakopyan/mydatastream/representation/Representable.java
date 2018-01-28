@@ -6,6 +6,14 @@ import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeReco
 
 import java.util.stream.Stream;
 
+/**
+ * Interface for Represents records in other type
+ */
 public interface Representable {
+    /**
+     * get Record represent
+     * @param baseRecord comtais record, which represent we need
+     * @return record represent on specific format
+     */
     Stream<String> GetRepresentation(CompositeRecordable baseRecord);
 }

@@ -1,6 +1,7 @@
 package com.github.hakhakopyan.mydatastream.mystream;
 
 import com.github.hakhakopyan.mydatastream.Actions.Actionable;
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecordable;
 import com.github.hakhakopyan.mydatastream.write_to_file.writer_giver.WriterGivable;
 
@@ -8,6 +9,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ *
+ * @param <E> объект имплементящий интерфейс {@link CompositeRecordable}
+ */
 public class MyQueueForNotParallelize<E extends CompositeRecordable> extends LinkedBlockingQueue<E> {
     List<Actionable> myActions;
     WriterGivable myWriterGiver;
@@ -24,6 +29,11 @@ public class MyQueueForNotParallelize<E extends CompositeRecordable> extends Lin
         this.myWriterGiver = writerGiver;
     }
 
+    /**
+     * Переопределяем метод для выполненения всех действий по рогонке записи через Actions и запись в файл
+     * @param record instance of {@link CompositeRecord}
+     * @return true always
+     */
     @Override
     public boolean add(E record) {
         //record = (CompositeRecordable) record;

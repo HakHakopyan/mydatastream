@@ -1,8 +1,12 @@
 package com.github.hakhakopyan.mydatastream.record.simple_record;
 
+import com.github.hakhakopyan.mydatastream.record.Recordable;
 import com.github.hakhakopyan.mydatastream.record.composite_record.EmptyCompositeRecord;
 import com.github.hakhakopyan.mydatastream.record.item.MyItem;
 
+/**
+ * Реализует пустой интерфейс, переопределяет метод {@link Recordable#isEmpty()}
+ */
 public class EmptySimpleRecord extends SimpleRecord {
 
     public EmptySimpleRecord() {
