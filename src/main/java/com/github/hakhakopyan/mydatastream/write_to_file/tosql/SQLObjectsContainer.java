@@ -14,7 +14,7 @@ public class SQLObjectsContainer {
 
     /**
      * существование ID под заданным именем
-     * @param name
+     * @param name имя объекта, для которого нужно проверить наличие ID
      * @return true, если такое имя объекта ранее был добавлен через вызов {@link SQLObjectsContainer#add(String)}
      */
     public boolean isExist(String name) {

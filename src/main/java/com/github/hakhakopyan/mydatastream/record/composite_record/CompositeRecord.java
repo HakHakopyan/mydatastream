@@ -27,7 +27,7 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
 
     /**
      * Устанавливаем имя записи через вызов конструктора {@link AbstractBaseRecord#AbstractBaseRecord(String)}
-     * @param name
+     * @param name contains record name
      */
     public CompositeRecord(String name) {
         super(name);

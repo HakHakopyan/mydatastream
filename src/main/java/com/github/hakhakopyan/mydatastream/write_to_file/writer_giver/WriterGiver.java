@@ -10,6 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * It implements the storage and provision, as necessary,
+ * of specialized objects that write to the record presentation in the file
+ */
 public class WriterGiver implements WriterGivable {
     FileType myFileWriterType;
     Map<String, FileWritable> myWriters = new HashMap<>();
@@ -22,6 +26,11 @@ public class WriterGiver implements WriterGivable {
         }
     }
 
+    /**
+     * Иногда требуется записать все виды записей в один файл или набор файлов
+     * Метод реализует проверку такого устловия
+     * @return true если ны выходе должен находиться один "Пишущий"
+     */
     private boolean checkForOneWriter() {
         if (this.myFileWriterType == FileType.SQL
                 || this.myFileWriterType == FileType.TXT
@@ -35,9 +44,9 @@ public class WriterGiver implements WriterGivable {
      * Возвращает "Пишущего в файл" для записи
      * Для SQL конечный пишушщий должен быть один
      * Для XML под каждый тип Записи пишущий должен быть уникаьным, так как запись идет в файл под данный тип Записи
-     * @param record
-     * @return
-     * @throws IOException
+     * @param record Содержит запись, для которой нужно получить специализированного "Пишущего" в файл
+     * @return "Пишущег" в файл
+     * @throws IOException если возникли проблемы с дейтсвительностью пути или записью в файл
      */
     @Override
     public FileWritable getWriter(CompositeRecordable record) throws IOException {

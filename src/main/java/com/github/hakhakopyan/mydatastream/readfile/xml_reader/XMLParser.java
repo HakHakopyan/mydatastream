@@ -38,7 +38,7 @@ public class XMLParser extends DefaultHandler2 {
 
     /**
      * Инициализируем поле {@link XMLParser#writeStream}
-     * @param writeStream
+     * @param writeStream объект, в который будет осуществляться запись читаемых из файла Записей
      */
     public XMLParser(BlockingQueue<CompositeRecordable> writeStream) {
         this.writeStream = writeStream;

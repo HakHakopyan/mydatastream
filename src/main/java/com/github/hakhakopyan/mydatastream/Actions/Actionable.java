@@ -6,7 +6,7 @@ import com.github.hakhakopyan.mydatastream.record.composite_record.Formatable;
 
 /**
  * Интерфейс для определения объекта, хранящего лябда выражение, выполняющее какое то действие над экземпляром {@link CompositeRecord}
- * @param <C>
+ * @param <C> объект, реализующий интерфейсы {@link CompositeRecordable} and {@link Formatable}
  */
 public interface Actionable <C extends CompositeRecordable&Formatable> {
     /**

@@ -19,7 +19,7 @@ public class Filter<C extends CompositeRecordable&Formatable> implements Actiona
 
     /**
      * Инициализируем лямбдой {@link Filter#MyFormater}
-     * @param formater
+     * @param formater содержит лямбду для проверки записи
      */
     public Filter(Predicate<C> formater) {
         this.MyFormater = formater;
@@ -28,7 +28,7 @@ public class Filter<C extends CompositeRecordable&Formatable> implements Actiona
     /**
      *
      * @param record instance of {@link CompositeRecord}
-     * @return
+     * @return Переданную в параметре запись, если она прошла проверки, или instance of {@link EmptyCompositeRecord}
      */
     @Override
     public CompositeRecordable action(C record) {

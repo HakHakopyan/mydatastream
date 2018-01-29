@@ -13,7 +13,7 @@ public interface FileWritable {
     /**
      * Write to file specified record view
      * @param record contains record specified view of which needs to be written to a file
-     * @throws IOException
+     * @throws IOException if there are problems with writing in file
      */
     public void write(CompositeRecordable record) throws IOException;
 
