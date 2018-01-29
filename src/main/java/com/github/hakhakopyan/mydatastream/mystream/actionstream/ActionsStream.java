@@ -49,7 +49,7 @@ public class ActionsStream {
 
     /**
      * Инициализируем {@link ActionsStream#myFilePathes}
-     * @param filePathes
+     * @param filePathes Contains filenames from which we will read records
      */
     public ActionsStream(String[] filePathes) {
         this.myFilePathes = filePathes;
@@ -58,7 +58,7 @@ public class ActionsStream {
     /**
      * Распаралелить работу системы и включить асинхронное чтние IO
      * количество потоков равняется колиеству процессоров ЭВМ минус 1 для потока чтения
-     * @return
+     * @return instance of {@link ActionsStream} in which the method was called
      */
     public ActionsStream paralelize() {
         // уменьшаем на 1 так как у нас есть работающий поток для чтения записей из файла
@@ -71,7 +71,7 @@ public class ActionsStream {
      * Распаралелить работу системы и включить асинхронное чтние IO
      * количество потоков равняется колиеству задаваемых потоков
      * @param threadCount содержит количество работающих потоков, поток чтения не учитывается
-     * @return
+     * @return instance of {@link ActionsStream} in which the method was called
      */
     public ActionsStream paralelize(int threadCount) {
         this.threadCount = threadCount;
@@ -84,7 +84,7 @@ public class ActionsStream {
      * и сохранение ее в instance of {@link Filter}
      * Является промежуточной операцией
      * @param condition содержит лямбду, выполняющую проверку записи на опреденное условие
-     * @return instance of {@link ActionsStream}
+     * @return instance of {@link ActionsStream} in which the method was called
      */
     public ActionsStream filter(Predicate<CompositeRecordable> condition) {
         myActions.add(new Filter(condition));
@@ -97,7 +97,7 @@ public class ActionsStream {
      * и сохранение ее в instance of {@link Filter}
      * Является промежуточной операцией
      * @param formater Содержит лямбду, форматирующую значение поля с датой
-     * @return instance of {@link ActionsStream}
+     * @return instance of {@link ActionsStream} in which the method was called
      */
     public ActionsStream format(Predicate<Formatable> formater) {
         myActions.add(new Filter(formater));
@@ -110,7 +110,7 @@ public class ActionsStream {
      * и сохранение ее в instance of {@link Changer}
      * Является промежуточной операцией
      * @param unaryOperator содержит лямбду для изменения записи
-     * @return instance of {@link ActionsStream}
+     * @return instance of {@link ActionsStream} in which the method was called
      */
     public ActionsStream change(UnaryOperator<CompositeRecordable> unaryOperator) {
         myActions.add(new Changer(unaryOperator));
@@ -123,7 +123,7 @@ public class ActionsStream {
      * и сохранение ее в instance of {@link Modifier}
      * Является промежуточной операцией
      * @param unaryOperator содержит лямбду для изменения записи
-     * @return instance of {@link ActionsStream}
+     * @return instance of {@link ActionsStream} in which the method was called
      */
     public ActionsStream modify(VoidReturnable unaryOperator) {
         myActions.add(new Modifier(unaryOperator));
@@ -137,7 +137,7 @@ public class ActionsStream {
      * Запускает выполнение {@link ActionsStream#execute(FileType)} без вывода в файл
      * получает результат у созданной до этого {@link Reducer} и возвращает его
      * Является теминальной операцией
-     * @param binaryOperator
+     * @param binaryOperator содержит бинарный метод выполнения дейтсвия над двумя записями
      * @return instance of {@link CompositeRecord}
      */
     public CompositeRecordable reduce(BinaryOperator<CompositeRecordable> binaryOperator) {
@@ -162,7 +162,7 @@ public class ActionsStream {
      * если пользователь не настроил паралельное выполнение через {@link ActionsStream#paralelize()}
      * запускает выполнение {@link ActionsStream#executeWithThreads(FileType)}
      * если пользователь настроил выполнение через потоки
-     * @param fileType
+     * @param fileType Содержит тип представления Записи на выходе
      */
     public void execute(FileType fileType) {
         try {

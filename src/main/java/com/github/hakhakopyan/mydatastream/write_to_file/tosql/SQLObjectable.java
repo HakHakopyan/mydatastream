@@ -1,7 +1,10 @@
 package com.github.hakhakopyan.mydatastream.write_to_file.tosql;
 
+import com.github.hakhakopyan.mydatastream.record.composite_record.CompositeRecord;
+
 /**
- * Реализует методы для работы с объектом помогающим при записи объекта в qll tables
+ * Реализует методы для работы с объектом помогающим при записи объекта в sql tables
+ * В проекте объектом выступает конкретная запись {@link CompositeRecord}
  */
 public interface SQLObjectable {
     /**

@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Реализует создание ID
+ * Реализует создание и поддержание уникальности ID, соответсвующее имени объекта,
+ * и ID соотвествующее группе объектов с схожим именем
  */
 public class SQLObjectsContainer {
     public final static int FIRST_OBJECT_ID = 1;
@@ -14,7 +15,7 @@ public class SQLObjectsContainer {
     /**
      * существование ID под заданным именем
      * @param name
-     * @return
+     * @return true, если такое имя объекта ранее был добавлен через вызов {@link SQLObjectsContainer#add(String)}
      */
     public boolean isExist(String name) {
 
@@ -22,9 +23,10 @@ public class SQLObjectsContainer {
     }
 
     /**
-     * доавляем новое имя и ID для него в наш map и возвращает instance of {@link SQLObjectable}
-     * @param name contains record name
-     * @return
+     * добавляет новое имя и уникальное ID для него в наш map
+     * и возвращает instance of {@link SQLObjectable} с уникальным ID для Гурппы объектов с схожими именами
+     * @param name contains object name
+     * @return instance of {@link SQLObjectable} с уникальными ID
      */
     public SQLObjectable add(String name) {
         if (!isExist(name)) {

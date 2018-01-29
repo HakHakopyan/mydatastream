@@ -9,6 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Implements to write the Record view in the XML file
+ * A record group with the same name of the parent record (framed by one tag) is written to a unique file
+ */
 public class ToXML implements FileWritable{
     String XML_FILE_NAME = ".xml";
     String myPath;

@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Implements to write the Record view in a text file
+ */
 public class ToTXT implements FileWritable {
     String TXT_FILE_NAME = "Writer.txt";
     FileWriter myFR;

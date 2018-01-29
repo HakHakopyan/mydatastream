@@ -38,7 +38,7 @@ public class ToSQL implements FileWritable {
     }
 
     /**
-     * запись
+     * writing to the corresponding files requests to create SQL tables
      */
     public void createTables() {
         createObjectTypesTable();
@@ -46,6 +46,9 @@ public class ToSQL implements FileWritable {
         createObjectsTable();
     }
 
+    /**
+     * Write a query to create a table that contains the record fields
+     */
     private void createParamTable() {
         File fileParams = new File(PARAMS_FILE);
         System.out.println(fileParams + " " + fileParams.exists());
@@ -60,6 +63,9 @@ public class ToSQL implements FileWritable {
         }
     }
 
+    /**
+     * Write a request to create a table containing the name of the record and the corresponding ID
+     */
     private void createObjectTypesTable() {
         File fileObjectTypes = new File(OBJECT_TYPES_FILE);
         try (FileWriter fr = new FileWriter(fileObjectTypes)) {
@@ -71,6 +77,10 @@ public class ToSQL implements FileWritable {
         }
     }
 
+    /**
+     * Write a request to create a table that contains the ID of the record name
+     * and a unique ID for each record from the group of records with a similar name
+     */
     private void createObjectsTable() {
         File fileObjectTypes = new File(OBJECTS_FILE);
         try (FileWriter fr = new FileWriter(fileObjectTypes)) {
@@ -82,6 +92,11 @@ public class ToSQL implements FileWritable {
         }
     }
 
+    /**
+     * Writing to the appropriate file requests to add SQL representation of record
+     * @param record Record, the representation of which should be written in the SQL tables
+     * @throws IOException if we have problems with writing to a file
+     */
     @Override
     public synchronized void write(CompositeRecordable record) throws IOException {
         boolean exist = mySQLObjects.isExist(record.getName());
@@ -93,6 +108,13 @@ public class ToSQL implements FileWritable {
         writeAtParamsFile(sqlObject, record);
     }
 
+    /**
+     * запись в файл запроса на добавление в таблицу с именем {@link ToSQL#OBJECT_TYPES_TABLE_NAME}
+     * уникального ID сответствующее имени Записи
+     * @param sqlObject содержит имя записи и уникальное ID для этого имени
+     * @return true if writing to the file was successful
+     * @throws IOException if we have problems with writing to a file
+     */
     private boolean writeAtObjectTypesFile(SQLObjectable sqlObject) throws IOException {
         File fileObjectType = new File(OBJECT_TYPES_FILE);
         if (!fileObjectType.exists())
@@ -105,6 +127,13 @@ public class ToSQL implements FileWritable {
         return true;
     }
 
+    /**
+     * creating a request to add an ID corresponding to the record name
+     * and the record ID from the group of records with the same name
+     * @param sqlObject contains unique ID
+     * @return true if writing to the file was successful
+     * @throws IOException if we have problems with writing to a file
+     */
     private boolean writeAtObjectsFile(SQLObjectable sqlObject) throws IOException {
         File file = new File(OBJECTS_FILE);
         if (!file.exists())
@@ -117,6 +146,13 @@ public class ToSQL implements FileWritable {
         return true;
     }
 
+    /**
+     * Create a request to add record fields in the table named {@link ToSQL#PARAMS_TABLE_NAME}
+     * @param sqlObject contains unique ID
+     * @param record Contains a Record whose fields need to be written to a SQL table named {@link ToSQL#PARAMS_TABLE_NAME}
+     * @return true if writing to the file was successful
+     * @throws IOException if we have problems with writing to a file
+     */
      private boolean writeAtParamsFile(SQLObjectable sqlObject, CompositeRecordable record) throws IOException {
          File file = new File(PARAMS_FILE);
          if (!file.exists())

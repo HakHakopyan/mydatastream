@@ -19,12 +19,20 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;
 
+/**
+ * Contains main method for to test the DataStream work
+ */
 public class ConvertingData {
 
     static String fileName1 = "src//data//input//Library.xml";
     static String fileName2 = "src//data//input//PhoneLibrary.xml";
     static String fileName3 = "src//data//input//Emloyees.xml";
 
+    /**
+     * method for to test the DataStream work
+     * @param args not used
+     * @throws IOException if we have IO exception when write in file ot read from there
+     */
     public static void main(String[] args) throws IOException {
         //System.out.println(Runtime.getRuntime().availableProcessors());
 
