@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 /**
  * Interface for Represents records in other type
  */
+@Deprecated
 public interface Representable {
     /**
      * get Record represent

@@ -138,6 +138,14 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
         return this.myNumber;
     }
 
+    /**
+     * set the ordinal record number
+     */
+    @Override
+    public void setIndex(int index) {
+        this.myNumber = index;
+    }
+
     @Override
     public String toString() {
         String retStr = this.getName() + " " + myNumber + "{ ";

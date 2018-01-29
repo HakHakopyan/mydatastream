@@ -6,12 +6,6 @@ Book 0{
   Publisher - Dhirendra Yoga Publications
   Cost - 11.50
 };
-Employee 0{ 
-  age - 29
-  name - Pankaj
-  gender - Male
-  role - Java Developer
-};
 person 0{ 
   name - Остап Бендер
   email - ostap@12.com
@@ -26,6 +20,12 @@ person 2{
   name - Мадам Грицацуева
   email - madam@12.com
   phone - 999-985-4321
+};
+Employee 0{ 
+  age - 29
+  name - Pankaj
+  gender - Male
+  role - Java Developer
 };
 Book 1{ 
   Title - The First and Last Freedom

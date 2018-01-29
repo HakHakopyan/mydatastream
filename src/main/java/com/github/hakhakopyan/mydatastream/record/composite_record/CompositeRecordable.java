@@ -64,4 +64,9 @@ public interface CompositeRecordable extends Recordable, Iterable<Recordable> {
      * @return ordinal record number
      */
     int getIndex();
+
+    /**
+     * set the ordinal record number
+     */
+    void  setIndex(int index);
 }

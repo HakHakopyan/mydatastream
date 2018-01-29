@@ -99,6 +99,8 @@ public class ToSQL implements FileWritable {
      */
     @Override
     public synchronized void write(CompositeRecordable record) throws IOException {
+        if (record.isEmpty())
+            return;
         boolean exist = mySQLObjects.isExist(record.getName());
         SQLObjectable sqlObject = mySQLObjects.add(record.getName());
         if (!exist) {

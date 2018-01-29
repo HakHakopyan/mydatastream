@@ -27,6 +27,8 @@ public class ToTXT implements FileWritable {
 
     @Override
     public synchronized void write(CompositeRecordable record) throws IOException {
+        if (record.isEmpty())
+            return;
         synchronized(this.myBR) {
             this.myBR.write(record.toString());
         }

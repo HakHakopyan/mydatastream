@@ -6,6 +6,10 @@ public class EmptyCompositeRecord extends CompositeRecord{
         super(EMPTY_RECORD_NAME);
     }
 
+    public EmptyCompositeRecord(CompositeRecordable record) {
+        super(EMPTY_RECORD_NAME, EMPTY_RECORD_NAME, record.getIndex());
+    }
+
     @Override
     public boolean isEmpty() {
         return true;

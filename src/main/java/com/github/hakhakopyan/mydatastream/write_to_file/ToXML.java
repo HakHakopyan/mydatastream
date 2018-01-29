@@ -26,6 +26,8 @@ public class ToXML implements FileWritable{
 
     @Override
     public synchronized void write(CompositeRecordable record) throws IOException {
+        if (record.isEmpty())
+            return;
         if (myRecorodsParentName == "")
             createFile(record.getMyParentRecordName());
 

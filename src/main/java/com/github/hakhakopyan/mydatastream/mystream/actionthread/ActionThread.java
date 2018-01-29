@@ -39,19 +39,22 @@ public class ActionThread extends AbstrActionThread {
         try {
             while (!isStop) {
                 record = myReadStream.take();
+                //сохраняем номер записи для нумерации пустой записи, если она всплывет во время перебокри операций
+                int reordIndex = record.getIndex();
                 for (Actionable action : myActions) {
                     record = action.action(record);
-                    if (record.isEmpty())
+                    if (record.isEmpty()) {
+                        record.setIndex(reordIndex);
                         break;
+                    }
                 }
-
-                if (!record.isEmpty()) {
-                    synchronized (myWriterGiver) {
-                        try {
-                            myWriterGiver.getWriter(record).write(record);
-                        } catch (IOException ex) {
-                            // вывести сообщение в пул
-                        }
+                synchronized (myWriterGiver) {
+                    try {
+                        // передаем даже пустую запись с позаимстованным номером, для нормальной работы модуля
+                        // записи прочтенных данных в порядке, в котором они были прочтены
+                        myWriterGiver.getWriter(record).write(record);
+                    } catch (IOException ex) {
+                        // вывести сообщение в пул
                     }
                 }
             }
