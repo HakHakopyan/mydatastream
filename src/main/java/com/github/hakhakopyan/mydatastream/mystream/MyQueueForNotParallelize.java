@@ -37,17 +37,23 @@ public class MyQueueForNotParallelize<E extends CompositeRecordable> extends Lin
     @Override
     public boolean add(E record) {
         //record = (CompositeRecordable) record;
+        int reordIndex = record.getIndex();
         for (Actionable action : myActions) {
-            record = (E) action.action(record);
-            if (record.isEmpty())
-                break;
-        }
-        if (!record.isEmpty()) {
             try {
-                myWriterGiver.getWriter(record).write(record);
-            } catch (IOException ex) {
-                // вывести сообщение в пул
+                record = (E) action.action(record);
+            } catch (Exception ex) {
+                System.out.println("Exception, when trying to perform an action("
+                        + action.getClass().getSimpleName() + ")/n  " + ex.getMessage());
             }
+            if (record.isEmpty()) {
+                record.setIndex(reordIndex);
+                break;
+            }
+        }
+        try {
+            myWriterGiver.getWriter(record).write(record);
+        } catch (IOException ex) {
+            // вывести сообщение в лог
         }
         return true;
     }

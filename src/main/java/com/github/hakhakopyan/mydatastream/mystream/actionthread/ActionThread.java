@@ -59,7 +59,7 @@ public class ActionThread extends AbstrActionThread {
                         // записи прочтенных данных в порядке, в котором они были прочтены
                         myWriterGiver.getWriter(record).write(record);
                     } catch (IOException ex) {
-                        // вывести сообщение в пул
+                        // вывести сообщение в лог
                     }
                 }
             }
