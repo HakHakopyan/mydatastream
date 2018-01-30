@@ -42,7 +42,12 @@ public class ActionThread extends AbstrActionThread {
                 //сохраняем номер записи для нумерации пустой записи, если она всплывет во время перебокри операций
                 int reordIndex = record.getIndex();
                 for (Actionable action : myActions) {
-                    record = action.action(record);
+                    try {
+                        record = action.action(record);
+                    } catch (Exception ex) {
+                        System.out.println("Exception, when trying to perform an action("
+                                + action.getClass().getSimpleName() + ")/n" + ex.getMessage());
+                    }
                     if (record.isEmpty()) {
                         record.setIndex(reordIndex);
                         break;
