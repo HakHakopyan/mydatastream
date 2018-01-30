@@ -34,7 +34,7 @@ public class ActionBaseThread extends AbstrActionThread {
      */
     @Override
     public void run() {
-
+        this.myReadStream.remainingCapacity()
         for (int i = 1; i <= myThreadCount; i++) {
             pool.execute(new ActionThread(myActions, this.myReadStream, this.myWriterGiver,
                     "ActionStream_" + i));

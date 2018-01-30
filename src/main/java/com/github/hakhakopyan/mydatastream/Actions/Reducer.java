@@ -35,7 +35,10 @@ public class Reducer implements Actionable{
      */
     @Override
     public synchronized CompositeRecordable action(CompositeRecordable record) {
-        this.myResult = this.myBinaryOperator.apply(this.myResult, record);
+        if (myResult.isEmpty()) {
+            this.myResult = record;
+        } else
+            this.myResult = this.myBinaryOperator.apply(this.myResult, record);
 
         return this.myAnswer;
     }

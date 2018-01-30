@@ -38,8 +38,6 @@ public class ConvertingData {
 
         // Вернуть книжку с большей стоимостью
         BinaryOperator<CompositeRecordable> myBiOp = (r1, r2) -> {
-            if (r1.isEmpty())
-                return r2;
             return Double.valueOf(r1.getItem("Cost").getValue()) >
                     Double.valueOf(r2.getItem("Cost").getValue()) ? r1 : r2;
         };
