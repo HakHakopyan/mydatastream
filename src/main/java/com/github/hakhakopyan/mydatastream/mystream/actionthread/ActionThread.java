@@ -46,7 +46,7 @@ public class ActionThread extends AbstrActionThread {
                         record = action.action(record);
                     } catch (Exception ex) {
                         System.out.println("Exception, when trying to perform an action("
-                                + action.getClass().getSimpleName() + ")/n" + ex.getMessage());
+                                + action.getClass().getSimpleName() + ")/n  " + ex.getMessage());
                     }
                     if (record.isEmpty()) {
                         record.setIndex(reordIndex);
