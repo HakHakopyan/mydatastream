@@ -63,8 +63,12 @@ public class ActionThread extends AbstrActionThread {
                     }
                 }
             }
+            //System.out.println("Поток " + this.getName() + " Finished");
         } catch (InterruptedException ex) {
+            //System.out.println(ex.getMessage());
+            System.out.println("Thread " + this.getName() + " Finished");
             // вывести сообщение в лог
+            Thread.currentThread().interrupt();
         }
     }
 

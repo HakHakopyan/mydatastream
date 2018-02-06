@@ -7,7 +7,7 @@ import com.github.hakhakopyan.mydatastream.record.composite_record.EmptyComposit
 import java.util.function.BinaryOperator;
 
 /**
- * Реализует метод для выполнения
+ * Реализует метод для выполнения бинарной операции над всем потоком
  */
 public class Reducer implements Actionable{
     /**

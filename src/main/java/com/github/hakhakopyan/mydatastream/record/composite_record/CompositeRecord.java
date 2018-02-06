@@ -57,7 +57,6 @@ public class CompositeRecord extends AbstractBaseRecord implements CompositeReco
             }
             if (index.get() > -1) {
                 this.myRecords.add(index.get() + 1, newRecord);
-                System.out.println(index.get());
             }
 
     }
